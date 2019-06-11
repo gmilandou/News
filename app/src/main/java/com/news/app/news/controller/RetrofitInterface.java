@@ -12,7 +12,15 @@ import retrofit2.http.GET;
 
 public interface RetrofitInterface {
 
+    //@GET("svc/topstories/v2/science.json?api-key=3zQ75lelXXmxuZpVMSLzaD06md8zaPhk")
+
     @GET("svc/topstories/v2/science.json?api-key=3zQ75lelXXmxuZpVMSLzaD06md8zaPhk")
-    public Call<NewYorkTimesResponse> getAllPost();
+    public Call<NewYorkTimesResponse> getTopStories();
+
+    @GET("svc/mostpopular/v2/emailed/7.json?api-key=3zQ75lelXXmxuZpVMSLzaD06md8zaPhk")
+    public Call<NewYorkTimesResponse> getMostPopular();
+
+    @GET("svc/search/v2/articlesearch.json?q=election&api-key=3zQ75lelXXmxuZpVMSLzaD06md8zaPhk")
+    public Call<NewYorkTimesResponse> getArticleSearch();
 
 }

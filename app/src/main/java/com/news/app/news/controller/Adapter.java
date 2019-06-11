@@ -5,6 +5,8 @@ package com.news.app.news.controller;
  */
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +31,8 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
 
     private NewYorkTimesResponse apiObjectList;
     private List<Results> apiObject;
-    private Date updated_date;
-    private Multimedia media;
+    //private Date updated_date;
+    //private Multimedia media;
 
 
 
@@ -57,6 +59,7 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
         Results results = apiObject.get(position);
         String ImageUrl = apiObject.get(position).getMultimedia().get(0).getUrl();
         String UpdatedDate = results.getUpdated_date().toString();
+        String SiteUrl = results.getUrl().toString();
 
         try {
            FormattedDate = processor.dateFormatter(UpdatedDate);

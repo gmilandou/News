@@ -3,6 +3,7 @@ package com.news.app.news.view;
 /**
  * Created by USER on 4/29/2019.
  */
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,15 +12,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.news.app.news.R;
-import com.news.app.news.model.topstories.NewYorkTimesResponse;
-import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.controller.Adapter;
+import com.news.app.news.controller.ApiUtil;
+import com.news.app.news.model.topstories.NewYorkTimesResponse;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TabFragment extends Fragment {
+public class MostFragment extends Fragment {
 
     private final String TAG = "MYLOG";
     int position;
@@ -28,7 +31,7 @@ public class TabFragment extends Fragment {
     public static Fragment getInstance(int position) {
         Bundle bundle = new Bundle();
         bundle.putInt("pos", position);
-        TabFragment tabFragment = new TabFragment();
+        MostFragment tabFragment = new MostFragment();
         tabFragment.setArguments(bundle);
         return tabFragment;
     }
@@ -45,7 +48,7 @@ public class TabFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        ApiUtil.getServiceClass().getAllPost().enqueue(new Callback<NewYorkTimesResponse>() {
+        ApiUtil.getServiceClass().getMostPopular().enqueue(new Callback<NewYorkTimesResponse>() {
             @Override
             public void onResponse(Call<NewYorkTimesResponse> call, Response<NewYorkTimesResponse> response) {
                 if (response.isSuccessful()) {
