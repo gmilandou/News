@@ -10,9 +10,9 @@ import java.util.Date;
 
 public class Processor {
 
-    public String dateFormatter(String DateTime) throws ParseException {
+    public String dateFormatterA(String DateTime) throws ParseException {
 
-        String FormattedDate = null;
+        String FormattedDate;
 
         SimpleDateFormat formatDate;
         formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -22,4 +22,18 @@ public class Processor {
 
         return FormattedDate;
     }
+
+    public String dateFormatterB(String DateInput) throws ParseException {
+
+        String FormattedDate;
+
+        SimpleDateFormat formatDate;
+        formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = formatDate.parse(DateInput);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        FormattedDate = formatter.format(date);
+
+        return FormattedDate;
+    }
+
 }

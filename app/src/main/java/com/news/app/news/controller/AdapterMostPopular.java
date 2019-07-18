@@ -6,28 +6,38 @@ package com.news.app.news.controller;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.news.app.news.R;
-import com.news.app.news.model.topstories.NewYorkTimesResponse;
-import com.news.app.news.model.topstories.Results;
-import com.squareup.picasso.Picasso;
+import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
+import com.news.app.news.model.mostpopular.Multimedia;
+import com.news.app.news.model.mostpopular.ResultSearch;
 import com.news.app.news.utility.Processor;
+import com.squareup.picasso.Picasso;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 
-public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
+public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
 
     private Context context;
-    private NewYorkTimesResponse apiObjectList;
-    private List<Results> apiObject;
 
-    public Adapter(Context context, NewYorkTimesResponse apiObjects) {
+
+    private MostPopularNYTResponse apiObjectList;
+    private List<ResultSearch> apiObject;
+    private Date updated_date;
+    private Multimedia media;
+
+
+
+    public AdapterMostPopular(Context context, MostPopularNYTResponse apiObjects) {
         this.context = context;
         this.apiObjectList = apiObjects;
-        apiObject = apiObjectList.getResults();
+        apiObject = apiObjectList.getResultSearch();
     }
 
 
@@ -44,17 +54,15 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
 
         Processor processor = new Processor();
 
-        Results results = apiObject.get(position);
-        String ImageUrl = apiObject.get(position).getMultimedia().get(0).getUrl();
-        //String ImageUrl = apiObject.get(position).getMultimedia().get(0).getUrl();
-        String UpdatedDate = results.getUpdated_date().toString();
-        String SiteUrl = results.getUrl().toString();
+        ResultSearch results = apiObject.get(position);
+        String ImageUrl = apiObject.get(position).getMedia().get(0).getMediaMetadata().get(0).getUrl();
+        String UpdatedDate = results.getUpdated();
 
         try {
-           FormattedDate = processor.dateFormatterA(UpdatedDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+          FormattedDate = processor.dateFormatterB(UpdatedDate);
+       } catch (ParseException e) {
+          e.printStackTrace();
+       }
 
         holder.description.setText(results.getTitle());
         holder.updated_date.setText(FormattedDate);
@@ -64,14 +72,13 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
 
     @Override
     public int getItemCount() {
-        if(apiObject == null || apiObject.size() ==0) {
+
+        if(apiObject.isEmpty() || apiObject == null || apiObject.size() ==0){
             return 0;
         }
 
         return apiObject.size();
-
     }
-
 
 }
 

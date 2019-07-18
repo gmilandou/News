@@ -14,9 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.news.app.news.R;
-import com.news.app.news.controller.Adapter;
+import com.news.app.news.controller.AdapterMostPopular;
 import com.news.app.news.controller.ApiUtil;
-import com.news.app.news.model.topstories.NewYorkTimesResponse;
+import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
+//import com.news.app.news.model.topstories.NewYorkTimesResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,18 +49,18 @@ public class MostFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        ApiUtil.getServiceClass().getMostPopular().enqueue(new Callback<NewYorkTimesResponse>() {
+        ApiUtil.getServiceClass().getMostPopular().enqueue(new Callback<MostPopularNYTResponse>() {
             @Override
-            public void onResponse(Call<NewYorkTimesResponse> call, Response<NewYorkTimesResponse> response) {
+            public void onResponse(Call<MostPopularNYTResponse> call, Response<MostPopularNYTResponse> response) {
                 if (response.isSuccessful()) {
-                    NewYorkTimesResponse postList = response.body();
-                    Adapter adapter = new Adapter(getContext(), postList);
+                    MostPopularNYTResponse postList = response.body();
+                    AdapterMostPopular adapter = new AdapterMostPopular(getContext(), postList);
                     recyclerView.setAdapter(adapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<NewYorkTimesResponse> call, Throwable t) {
+            public void onFailure(Call<MostPopularNYTResponse> call, Throwable t) {
                 Log.d(TAG, "error loading from API");
             }
         });
