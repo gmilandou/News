@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.Search"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp">
+
+        <EditText
+            android:id="@+id/searchText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Article search"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/date_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/begin_date"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:text="2017/05/6"
+                    android:backgroundTint="@color/colorPrimary"/>
+
+                <Spinner
+                    android:id="@+id/end_date"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:spinnerMode="dialog"/>
+            </LinearLayout>
+
+            <LinearLayout
+            android:id="@+id/art_po_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date_layout"
+            android:paddingTop="5dp">
+            <CheckBox
+                android:id="@+id/art_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:text="Art"
+                android:onClick="onCheckboxClicked"/>
+
+            <CheckBox
+                android:id="@+id/politic_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:text="Politics"
+                android:onClick="onCheckboxClicked"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sport_po_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/art_po_layout"
+                android:paddingTop="5dp">
+                <CheckBox
+                    android:id="@+id/business_checkbox"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:text="Business"/>
+
+                <CheckBox
+                    android:id="@+id/sport_checkbox"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:text="Sports"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/travel_po_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sport_po_layout"
+                android:paddingTop="5dp">
+                <CheckBox
+                    android:id="@+id/entre_checkbox"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:text="Entrepreneurs"/>
+
+                <CheckBox
+                    android:id="@+id/travel_checkbox"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:text="Travel"/>
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/switch_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/travel_po_layout"/>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="SEARCH"
+                android:layout_marginTop="40dp"
+                android:background="@color/colorPrimary"
+                android:textColor="#fff"
+                android:elevation="10dp"
+                android:layout_below="@+id/travel_po_layout"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

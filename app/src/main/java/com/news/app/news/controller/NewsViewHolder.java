@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.news.app.news.R;
 import com.news.app.news.model.topstories.NewYorkTimesResponse;
@@ -21,6 +22,8 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
     //public WebView webView;
     public WebView webView;
     public String Siteurl;
+    public LinearLayout mcontent ;
+    public TextView section;
 
 
 
@@ -31,19 +34,13 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
         description = (TextView) itemView.findViewById(R.id.post_description);
         updated_date = (TextView) itemView.findViewById(R.id.date);
         image = (ImageView) itemView.findViewById(R.id.image);
+        mcontent = itemView.findViewById(R.id.mcontent) ;
+        section = itemView.findViewById(R.id.post_section);
 
 
        // webView = (WebView) itemView.findViewById(R.id.webView);
 
-        image.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.loadUrl(Siteurl);
-            }
-
-        });
 
 
     }

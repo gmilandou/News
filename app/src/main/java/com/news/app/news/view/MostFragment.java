@@ -38,13 +38,12 @@ public class MostFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
-        Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_id);
-        final LinearLayoutManager layoutManager = new  LinearLayoutManager(getActivity());
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -64,7 +63,7 @@ public class MostFragment extends Fragment {
                 Log.d(TAG, "error loading from API");
             }
         });
-        return view ;
+        return view;
 
     }
 

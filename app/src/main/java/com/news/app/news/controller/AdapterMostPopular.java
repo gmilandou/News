@@ -5,8 +5,8 @@ package com.news.app.news.controller;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,9 @@ import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
 import com.news.app.news.model.mostpopular.Multimedia;
 import com.news.app.news.model.mostpopular.ResultSearch;
 import com.news.app.news.utility.Processor;
+import com.news.app.news.view.activity_webview;
 import com.squareup.picasso.Picasso;
+
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +33,6 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
     private List<ResultSearch> apiObject;
     private Date updated_date;
     private Multimedia media;
-
 
 
     public AdapterMostPopular(Context context, MostPopularNYTResponse apiObjects) {
@@ -51,31 +52,44 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
         String FormattedDate = null;
-
         Processor processor = new Processor();
 
-        ResultSearch results = apiObject.get(position);
-        String ImageUrl = apiObject.get(position).getMedia().get(0).getMediaMetadata().get(0).getUrl();
+        final ResultSearch results = apiObject.get(position);
+        String ImageUrl = null;
+        if (apiObject.get(position).getMedia().get(0).getMediaMetadata().size() > 0) {
+            ImageUrl = apiObject.get(position).getMedia().get(0).getMediaMetadata().get(0).getUrl();
+        }
+
         String UpdatedDate = results.getUpdated();
+        String section = results.getSection();
 
         try {
-          FormattedDate = processor.dateFormatterB(UpdatedDate);
-       } catch (ParseException e) {
-          e.printStackTrace();
-       }
+            FormattedDate = processor.dateFormatterB(UpdatedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         holder.description.setText(results.getTitle());
         holder.updated_date.setText(FormattedDate);
-        Picasso.get().load(ImageUrl).into(holder.image);
+        holder.section.setText(section + " >");
+
+        Picasso.get().load(ImageUrl)
+                .placeholder(R.drawable.index).into(holder.image);
+
+        holder.mcontent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, activity_webview.class);
+                intent.putExtra("WEBURL", results.getUrl());
+                context.startActivity(intent);
+            }
+        });
     }
 
 
     @Override
     public int getItemCount() {
-
-        if(apiObject.isEmpty() || apiObject == null || apiObject.size() ==0){
-            return 0;
-        }
 
         return apiObject.size();
     }

@@ -1,5 +1,7 @@
 package com.news.app.news.model.topstories;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**

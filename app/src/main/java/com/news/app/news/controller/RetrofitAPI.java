@@ -6,6 +6,7 @@ package com.news.app.news.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.news.app.news.utility.DateStringConverterFactory;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,6 +19,9 @@ public class RetrofitAPI {
         return new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                // custom interceptor
+               // .addConverterFactory(new DateStringConverterFactory(GsonConverterFactory.create(gson)))
+
                 .build();
     }
 }

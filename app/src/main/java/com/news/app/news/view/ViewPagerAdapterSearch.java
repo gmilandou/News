@@ -9,12 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapterSearch extends FragmentPagerAdapter {
 
     private static final String TAG = "";
-    private String title[] = {"TOP STORIES", "MOST POPULAR", "BUSINESS"};
+    private String title[] = {"SEARCH RESULTS"};
 
-    public ViewPagerAdapter(FragmentManager manager) {
+    public ViewPagerAdapterSearch(FragmentManager manager) {
         super(manager);
     }
 
@@ -24,11 +24,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
 
             case 0:
-                return new TopFragment();
-            case 1:
-                return new MostFragment();
-            case 2:
-                return new ArticleFragment();
+                return new SearchFragment();
             default:
                 return new TopFragment();
 

@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/outline_search_white_18dp"
+        android:title="Search"
+        app:showAsAction="ifRoom"></item>
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/action_notification"
+            android:title="Notifications">
+        </item>
+
+        <item
+            android:id="@+id/action_help"
+            android:title="Help">
+        </item>
+
+        <item
+            android:id="@+id/action_about"
+            android:title="About">
+        </item>
+
+    </group>
+</menu>

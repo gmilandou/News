@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.news.app.news">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,7 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".view.activity_webview" />
+        <activity
+            android:name=".controller.Notification"
+            android:label="@string/title_activity_notification"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".controller.Search"
+            android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".controller.SearchResultActivity"></activity>
     </application>
 
 </manifest>

@@ -171,7 +171,7 @@ public class ResultSearch {
         this.source = source;
     }
 
-    public String  getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
@@ -232,9 +232,6 @@ public class ResultSearch {
 
         return "Result [url = " + url + ", adxKeywords = " + adxKeywords + ", subsection = " + subsection + ", emailCount = " + emailCount + ", countType = " + countType + ", column = " + column + ", etaId = " + etaId + ", section = " + section + ", id = " + id + ", assetId = " + assetId + ", nytdsection = " + nytdsection + ", byline = " + byline + ", type = " + type + ", title = " + title + ", _abstract = " + _abstract + ", publishedDate = " + publishedDate + ", source = " + source + ", updated = " + updated + ", desFacet = " + desFacet + ", orgFacet = " + orgFacet + ", perFacet = " + perFacet + ", geoFacet = " + geoFacet + ", media = " + media + ", uri = " + uri + "]";
     }
-
-
-
 
 
 }

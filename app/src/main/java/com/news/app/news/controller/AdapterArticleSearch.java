@@ -5,41 +5,31 @@ package com.news.app.news.controller;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.news.app.news.R;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.model.articlesearch.Doc;
-import com.news.app.news.model.articlesearch.Response;
-import com.news.app.news.model.articlesearch.ArticleSearchResponse;
-import com.news.app.news.model.topstories.Results;
 import com.news.app.news.utility.Processor;
+import com.news.app.news.view.activity_webview;
 import com.squareup.picasso.Picasso;
-
 import java.text.ParseException;
 import java.util.List;
-import java.util.Objects;
-
-//import com.news.app.news.model.mostpopular.Multimedia;
 
 
 public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
 
     private Context context;
-
-    private ArticleSearchResponse apiObject;
-    //private List<Doc> apiObject;
-
+    private ArticleSearchResponse apiObjectList;
+    private List<Doc> apiObject;
 
     public AdapterArticleSearch(Context context, ArticleSearchResponse apiObjects) {
         this.context = context;
-        this.apiObject = apiObjects;
-        //apiObject = apiObjectList.getDocs();
-
+        this.apiObjectList = apiObjects;
+        apiObject = apiObjectList.getResponse().getDocs();
     }
 
 
@@ -51,18 +41,25 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
 
 
     @Override
-    public void onBindViewHolder(NewsViewHolder holder, int position) {
+    public void onBindViewHolder(NewsViewHolder holder, final int position) {
 
         String FormattedDate = null;
         Processor processor = new Processor();
+        Doc doc = apiObject.get(position);
 
+        String ImageUrl= null ;
+        if(apiObject.get(position).getMultimedia().size() > 0 ){
+            ImageUrl = "https://static01.nyt.com/" + apiObject.get(position).getMultimedia().get(0).getUrl();
+        }
 
-        this.apiObject.getResponse().getDocs().get(0).getWebUrl();
-        String ImageUrl = "https://static01.nyt.com/" + this.apiObject.getResponse().getDocs().get(0).getMultimedia().get(0).getUrl();
-        String brief = this.apiObject.getResponse().getDocs().get(0).getLeadParagraph();
+        String brief = doc.getSnippet();
         holder.description.setText(brief);
-        String UpdatedDate = this.apiObject.getResponse().getDocs().get(0).getPubDate().toString();
-        Picasso.get().load(ImageUrl).into(holder.image);
+        String UpdatedDate = doc.getPubDate().toString();
+
+        String section = doc.getSectionName();
+
+        Picasso.get().load(ImageUrl)
+                .placeholder(R.drawable.index).into(holder.image);
 
         try {
             FormattedDate = processor.dateFormatterA(UpdatedDate);
@@ -70,20 +67,25 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
             e.printStackTrace();
         }
         holder.updated_date.setText(FormattedDate);
+        holder.section.setText(section + " >");
 
+        holder.mcontent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(context, activity_webview.class) ;
+                intent.putExtra("WEBURL", apiObject.get(position).getWebUrl()) ;
+                context.startActivity(intent);
+            }
+        });
     }
 
 
     @Override
     public int getItemCount() {
 
-        // if(apiObject == null || apiObject.getResponse().getDocs().isEmpty() || apiObject.getResponse().getDocs().size() ==0){
-        //   return 0;
-        //}
+        return apiObject.size();
 
-        //return apiObject.size();
-        return apiObject.getResponse().getDocs().size();
     }
 
 }
