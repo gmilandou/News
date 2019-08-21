@@ -47,7 +47,6 @@ public class TopFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        String key = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
 
         ApiUtil.getServiceClass().getTopStories().enqueue(new Callback<NewYorkTimesResponse>() {
             @Override

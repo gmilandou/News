@@ -4,6 +4,8 @@ package com.news.app.news.view;
  * Created by USER on 4/29/2019.
  */
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +14,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.news.app.news.controller.SearchResultActivity;
 import com.news.app.news.R;
 import com.news.app.news.controller.AdapterArticleSearch;
 import com.news.app.news.controller.ApiUtil;
+import com.news.app.news.controller.SearchResultActivity;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 
 import retrofit2.Call;
@@ -28,6 +33,18 @@ public class SearchFragment extends Fragment {
     int position;
     private RecyclerView recyclerView;
 
+    Intent intent= null ;
+    Intent intentBoxes = null;
+
+    @SuppressLint("ValidFragment")
+    public SearchFragment(Intent intent, Intent intentBoxes){
+        this.intent = intent ;
+        this.intentBoxes= intentBoxes;
+    }
+
+    public SearchFragment(){
+
+    }
     public static Fragment getInstance(int position) {
         Bundle bundle = new Bundle();
         bundle.putInt("pos", position);
@@ -47,19 +64,30 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        String searchText = "Obama";
-        String section = "Politics";
-        String begin_date = "20170101";
+        //String searchText = "Trump";
+        //String section = "Politics";
+        //String begin_date = "20170101";
         String apiKey = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
-        String endDate = "20190807";
+        //String endDate = "20190807";
 
 
+
+       String searchText = intent.getStringExtra("search_text");
+       String section = intentBoxes.getStringExtra("section");
+       String begin_date = intentBoxes.getStringExtra("begin_date");
+       String endDate = intentBoxes.getStringExtra("endDate");
+
+        Log.d(TAG, "This is my passed data from Fragment: " + section);
+
+        //ApiUtil.getServiceClass().getSearch(searchText , section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
         ApiUtil.getServiceClass().getSearch(searchText , section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
             @Override
             public void onResponse(Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
                 if (response.isSuccessful()) {
                     ArticleSearchResponse postList = response.body();
                     AdapterArticleSearch adapter = new AdapterArticleSearch(getContext(), postList);
+
+                    //Log.d(TAG, "This is my passed data: " + data);
                     recyclerView.setAdapter(adapter);
                 }
             }
@@ -73,5 +101,11 @@ public class SearchFragment extends Fragment {
 
     }
 
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            String mParam1 = getArguments().getString("params");
+        }
+    }
 
 }

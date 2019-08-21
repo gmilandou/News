@@ -54,7 +54,7 @@ public interface RetrofitInterface {
 
 
     @GET("svc/search/v2/articlesearch.json")
-    Call<ArticleSearchResponse> getSearchBeta(
+    Call<ArticleSearchResponse> getSearch(
             @Query("q") String searchText,
             @Query("fq") String section,
             @Query("begin_date") String begin_date,
