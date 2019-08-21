@@ -26,6 +26,7 @@
             android:name=".controller.Notification"
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme" />
+
         <activity
             android:name=".controller.Search"
             android:label="@string/title_activity_search"

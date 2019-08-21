@@ -34,17 +34,16 @@ public class SearchFragment extends Fragment {
     private RecyclerView recyclerView;
 
     Intent intent= null ;
-    Intent intentBoxes = null;
 
     @SuppressLint("ValidFragment")
-    public SearchFragment(Intent intent, Intent intentBoxes){
+    public SearchFragment(Intent intent){
         this.intent = intent ;
-        this.intentBoxes= intentBoxes;
     }
 
     public SearchFragment(){
 
     }
+
     public static Fragment getInstance(int position) {
         Bundle bundle = new Bundle();
         bundle.putInt("pos", position);
@@ -73,21 +72,18 @@ public class SearchFragment extends Fragment {
 
 
        String searchText = intent.getStringExtra("search_text");
-       String section = intentBoxes.getStringExtra("section");
-       String begin_date = intentBoxes.getStringExtra("begin_date");
-       String endDate = intentBoxes.getStringExtra("endDate");
+       String section = intent.getStringExtra("section");
+       String begin_date = intent.getStringExtra("begin_date");
+       String endDate = intent.getStringExtra("endDate");
 
         Log.d(TAG, "This is my passed data from Fragment: " + section);
 
-        //ApiUtil.getServiceClass().getSearch(searchText , section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
         ApiUtil.getServiceClass().getSearch(searchText , section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
             @Override
             public void onResponse(Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
                 if (response.isSuccessful()) {
                     ArticleSearchResponse postList = response.body();
                     AdapterArticleSearch adapter = new AdapterArticleSearch(getContext(), postList);
-
-                    //Log.d(TAG, "This is my passed data: " + data);
                     recyclerView.setAdapter(adapter);
                 }
             }
@@ -101,11 +97,11 @@ public class SearchFragment extends Fragment {
 
     }
 
-    public void onCreate(Bundle savedInstanceState) {
+    /*public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            String mParam1 = getArguments().getString("params");
+            //String mParam1 = getArguments().getString("params");
         }
-    }
+    }*/
 
 }

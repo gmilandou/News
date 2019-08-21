@@ -47,7 +47,7 @@ public class SearchResultActivity extends AppCompatActivity {
         Intent intentBoxes = getIntent();
 
         viewPager = findViewById(R.id.viewpagerSearch);
-        ViewPagerAdapterSearch adapter = new ViewPagerAdapterSearch(getSupportFragmentManager(), intent, intentBoxes);
+        ViewPagerAdapterSearch adapter = new ViewPagerAdapterSearch(getSupportFragmentManager(), intent);
         viewPager.setAdapter(adapter);
 
         if (getSupportActionBar() != null) {

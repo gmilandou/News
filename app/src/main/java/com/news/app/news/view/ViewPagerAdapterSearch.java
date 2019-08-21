@@ -15,12 +15,10 @@ public class ViewPagerAdapterSearch extends FragmentPagerAdapter {
     private static final String TAG = "";
     private String title[] = {"SEARCH RESULTS"};
     Intent intent ;
-    Intent intentBoxes;
-    public ViewPagerAdapterSearch(FragmentManager manager, Intent intent, Intent intentBoxes) {
+    public ViewPagerAdapterSearch(FragmentManager manager, Intent intent) {
         super(manager);
 
         this.intent= intent ;
-        this.intentBoxes=intentBoxes;
     }
 
     @Override
@@ -29,7 +27,7 @@ public class ViewPagerAdapterSearch extends FragmentPagerAdapter {
         switch (position) {
 
             case 0:
-                return new SearchFragment(intent, intentBoxes);
+                return new SearchFragment(intent);
             default:
                 return new TopFragment();
 

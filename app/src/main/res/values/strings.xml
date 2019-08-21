@@ -3,4 +3,5 @@
     <string name="title_activity_fragment">fragment</string>
     <string name="title_activity_notification">Notification</string>
     <string name="title_activity_search">Search Articles</string>
+    <string name="API_KEY">3zQ75lelXXmxuZpVMSLzaD06md8zaPhk</string>
 </resources>
