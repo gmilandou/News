@@ -7,9 +7,12 @@ package com.news.app.news.controller;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.news.app.news.R;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
 import com.news.app.news.model.topstories.NewYorkTimesResponse;
+
+import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -41,7 +44,7 @@ public interface RetrofitInterface {
     @GET("svc/search/v2/articlesearch.json")
     Call<ArticleSearchResponse> getSearch(
             @Query("q") String searchText,
-            @Query("fq") String section,
+            @Query("fq") ArrayList<String> section,
             @Query("begin_date") String begin_date,
             @Query("end_date") String endDate1,
             @Query("api-key") String apiKey1

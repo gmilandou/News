@@ -74,8 +74,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:text="Art"
-                android:onClick="onCheckboxClicked"/>
+                android:text="Art"/>
 
             <CheckBox
                 android:id="@+id/politic_checkbox"
@@ -84,8 +83,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date"
-                android:text="Politics"
-                android:onClick="onCheckboxClicked"/>
+                android:text="Politics"/>
         </LinearLayout>
 
             <LinearLayout

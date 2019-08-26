@@ -1,9 +1,14 @@
 package com.news.app.news;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private final String CHANNEL_ID = "CHANNEL_ID";
 
 
     @Override
@@ -45,9 +51,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-       // checkInternetConenction();
-        
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_notification) {
-           // Intent i = new Intent(MainActivity.this, Notification.class);
+            // Intent i = new Intent(MainActivity.this, Notification.class);
             Intent i = new Intent(MainActivity.this, Search.class);
             i.putExtra("Notification_type", "Notification");
             startActivity(i);
@@ -89,28 +94,30 @@ public class MainActivity extends AppCompatActivity {
     private boolean checkInternetConenction() {
         // get Connectivity Manager object to check connection
         ConnectivityManager connec
-                =(ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
         // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() ==
+        if (connec.getNetworkInfo(0).getState() ==
                 android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() ==
                         android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() ==
                         android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
             Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
             //Log.d(TAG, "checkInternetConenction: I am here connected");
             return true;
-        }else if (
+        } else if (
                 connec.getNetworkInfo(0).getState() ==
                         android.net.NetworkInfo.State.DISCONNECTED ||
                         connec.getNetworkInfo(1).getState() ==
-                                android.net.NetworkInfo.State.DISCONNECTED  ) {
+                                android.net.NetworkInfo.State.DISCONNECTED) {
             Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
-           // Log.d(TAG, "checkInternetConenction: I am here not connected");
+            // Log.d(TAG, "checkInternetConenction: I am here not connected");
             return false;
         }
         return false;
     }
+
+
 }

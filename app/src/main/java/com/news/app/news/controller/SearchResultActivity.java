@@ -20,6 +20,8 @@ import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.view.SearchFragment;
 import com.news.app.news.view.ViewPagerAdapterSearch;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,7 +46,7 @@ public class SearchResultActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        Intent intentBoxes = getIntent();
+        //Intent intentBoxes = getIntent();
 
         viewPager = findViewById(R.id.viewpagerSearch);
         ViewPagerAdapterSearch adapter = new ViewPagerAdapterSearch(getSupportFragmentManager(), intent);
@@ -55,13 +57,17 @@ public class SearchResultActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        ArrayList<String> section =(ArrayList<String>)intent.getSerializableExtra("section");
 
-        Toast.makeText(this, "Checking intent: " + intent.getStringExtra("search_text"), Toast.LENGTH_LONG).show();
+       // Toast.makeText(this, "Checking intent: " + intent.getStringExtra("search_text"), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Checking intent: " + intent.getStringExtra("section"), Toast.LENGTH_LONG).show();
+
+        Toast.makeText(this, "Checking intent: " + section, Toast.LENGTH_LONG).show();
 
 
         //String searchText = "Obama";
         final String searchText = intent.getStringExtra("search_text");
-        String section = "Politics";
+       // String section = "Politics";
         String begin_date = "20170101";
         String apiKey = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
         String endDate = "20190807";

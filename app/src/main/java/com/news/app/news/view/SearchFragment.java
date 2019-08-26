@@ -23,6 +23,8 @@ import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.controller.SearchResultActivity;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +53,7 @@ public class SearchFragment extends Fragment {
         tabFragment.setArguments(bundle);
         return tabFragment;
     }
-
+ 
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -71,10 +73,14 @@ public class SearchFragment extends Fragment {
 
 
 
+        ArrayList<String> section =(ArrayList<String>)intent.getSerializableExtra("section");
+
        String searchText = intent.getStringExtra("search_text");
-       String section = intent.getStringExtra("section");
+      // String section = intent.getStringExtra("section");
        String begin_date = intent.getStringExtra("begin_date");
        String endDate = intent.getStringExtra("endDate");
+
+
 
         Log.d(TAG, "This is my passed data from Fragment: " + section);
 

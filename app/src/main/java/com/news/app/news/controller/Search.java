@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,9 +19,13 @@ import com.news.app.news.R;
 import com.news.app.news.view.ArticleFragment;
 import com.news.app.news.view.SearchFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Search extends AppCompatActivity {
 
     public static EditText search_text;
+    private CheckBox art_checkbox;
     private CheckBox politics_checkbox;
     private CheckBox business_checkbox;
     private CheckBox sport_checkbox;
@@ -45,14 +50,13 @@ public class Search extends AppCompatActivity {
 
         Intent notificationType = getIntent();
 
-
         search_text = findViewById(R.id.searchText);
-        //CheckBox art_checkbox = findViewById(R.id.art_checkbox);
-        //politics_checkbox = findViewById(R.id.politic_checkbox);
-        //business_checkbox = findViewById(R.id.business_checkbox);
-        //sport_checkbox = findViewById(R.id.sport_checkbox);
-        //entrepreneur_checkbox = findViewById(R.id.entre_checkbox);
-        //travel_checkbox = findViewById(R.id.travel_checkbox);
+        art_checkbox = findViewById(R.id.art_checkbox);
+        politics_checkbox = findViewById(R.id.politic_checkbox);
+        business_checkbox = findViewById(R.id.business_checkbox);
+        sport_checkbox = findViewById(R.id.sport_checkbox);
+        entrepreneur_checkbox = findViewById(R.id.entre_checkbox);
+        travel_checkbox = findViewById(R.id.travel_checkbox);
         search_button = findViewById(R.id.button);
         switch_button = findViewById(R.id.switch_button);
 
@@ -69,16 +73,46 @@ public class Search extends AppCompatActivity {
         }
 
 
-
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(Search.this, SearchResultActivity.class);
+
                 String searchText = search_text.getText().toString();
                 intent.putExtra("search_text", searchText);
                 intent.putExtra("begin_date", "20170101");
                 intent.putExtra("endDate", "20190807");
+
+                ArrayList<String> sectionList = new ArrayList<>();
+
+
+                if (art_checkbox.isChecked()) {
+                    sectionList.add("Arts");
+                }
+
+                if (politics_checkbox.isChecked()) {
+                    sectionList.add("Politics");
+                }
+
+                if (business_checkbox.isChecked()) {
+                    sectionList.add("Business");
+                }
+
+                if (sport_checkbox.isChecked()) {
+                    sectionList.add("Sports");
+                }
+
+                if (entrepreneur_checkbox.isChecked()) {
+                    sectionList.add("Entrepreneurs");
+                }
+
+                if (travel_checkbox.isChecked()) {
+                    sectionList.add("Travels");
+                }
+
+                intent.putStringArrayListExtra("section", sectionList);
+
 
                 startActivity(intent);
 
@@ -98,6 +132,10 @@ public class Search extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        String Gildas = intent.getStringExtra("section1");
+        Log.d("Logs", "This is my Good checks: " + Gildas);
+
 
     }
 
@@ -112,69 +150,6 @@ public class Search extends AppCompatActivity {
     }
 
 
-    public void onCheckboxClicked(View view) {
-
-
-
-        final Intent intent = new Intent(Search.this, SearchResultActivity.class);
-        String t = search_text.getText().toString();
-
-        intent.putExtra("search_text", t);
-
-        boolean checked = ((CheckBox) view).isChecked();
-
-        // Check which checkbox was clicked
-        switch (view.getId()) {
-            case R.id.art_checkbox:
-                if (checked) {
-                    intent.putExtra("section", "Arts");
-                } else
-                    // intentBoxes.putExtra("section", "");
-                    break;
-            case R.id.politic_checkbox:
-                if (checked) {
-                    intent.putExtra("section", "Politics");
-
-                } else
-                    //intentBoxes.putExtra("section", "");
-                    break;
-            case R.id.business_checkbox:
-                if (checked) {
-                    intent.putExtra("section", "Business");
-
-                } else
-                    //intentBoxes.putExtra("section", "");
-                    break;
-            case R.id.sport_checkbox:
-                if (checked) {
-                    intent.putExtra("section", "Sports");
-
-
-                } else
-                    //intentBoxes.putExtra("section", "");
-                    //sport_checkbox.setChecked(false);
-
-                    break;
-            case R.id.entre_checkbox:
-                if (checked) {
-                    intent.putExtra("section", "Entrepreneurs");
-
-                } else
-                    // intentBoxes.putExtra("section", "");
-                    break;
-            case R.id.travel_checkbox:
-                if (checked) {
-                    intent.putExtra("section", "Travels");
-
-                } else
-                    //  intentBoxes.putExtra("section", "");
-                    break;
-                // TODO: Veggie sandwich
-                //startActivity(intentBoxes);
-        }
-
-
-
-    }
-
 }
+
+

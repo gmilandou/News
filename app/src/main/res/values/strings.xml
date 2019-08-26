@@ -4,4 +4,8 @@
     <string name="title_activity_notification">Notification</string>
     <string name="title_activity_search">Search Articles</string>
     <string name="API_KEY">3zQ75lelXXmxuZpVMSLzaD06md8zaPhk</string>
+    <string name="CHANNEL_ID">NEWS_CHANNEL</string>
+    <string name="CHANNEL_NAME">NEWS_CHANNEL</string>
+    <string name="CHANNEL_DESCRIPTION">NEWS_DESC</string>
+
 </resources>
