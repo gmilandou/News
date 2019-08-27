@@ -1,5 +1,7 @@
 package com.news.app.news.utility;
 
+import com.news.app.news.R;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

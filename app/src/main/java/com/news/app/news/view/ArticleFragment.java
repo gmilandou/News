@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.news.app.news.R;
-import com.news.app.news.controller.Adapter;
 import com.news.app.news.controller.AdapterArticleSearch;
 import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;

@@ -1,11 +1,9 @@
 package com.news.app.news.controller;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,13 +12,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
-
 import com.news.app.news.R;
-import com.news.app.news.view.ArticleFragment;
-import com.news.app.news.view.SearchFragment;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Search extends AppCompatActivity {
 
@@ -131,11 +124,6 @@ public class Search extends AppCompatActivity {
                 }
             }
         });
-
-        Intent intent = getIntent();
-        String Gildas = intent.getStringExtra("section1");
-        Log.d("Logs", "This is my Good checks: " + Gildas);
-
 
     }
 

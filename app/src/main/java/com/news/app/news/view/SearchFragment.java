@@ -73,7 +73,8 @@ public class SearchFragment extends Fragment {
 
 
 
-        ArrayList<String> section =(ArrayList<String>)intent.getSerializableExtra("section");
+        //ArrayList<String> section =(ArrayList<String>)intent.getSerializableExtra("section");
+        ArrayList<String> section = intent.getStringArrayListExtra("section");
 
        String searchText = intent.getStringExtra("search_text");
       // String section = intent.getStringExtra("section");
@@ -83,6 +84,7 @@ public class SearchFragment extends Fragment {
 
 
         Log.d(TAG, "This is my passed data from Fragment: " + section);
+
 
         ApiUtil.getServiceClass().getSearch(searchText , section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
             @Override
