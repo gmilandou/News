@@ -43,7 +43,8 @@
             <LinearLayout
                 android:id="@+id/date_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="showDatePicker">
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/begin_date"
                     android:layout_width="0dp"
@@ -53,7 +54,7 @@
                     android:text="2017/05/6"
                     android:backgroundTint="@color/colorPrimary"/>
 
-                <Spinner
+                <EditText
                     android:id="@+id/end_date"
                     android:layout_width="0dp"
                     android:layout_weight="1"
