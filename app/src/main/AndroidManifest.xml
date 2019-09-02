@@ -28,7 +28,7 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".controller.Search"
+            android:name=".controller.SearchActivity"
             android:label="@string/title_activity_search"
             android:theme="@style/AppTheme" />
         <activity android:name=".controller.SearchResultActivity"></activity>

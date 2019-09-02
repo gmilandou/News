@@ -1,24 +1,17 @@
 package com.news.app.news;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.news.app.news.controller.Notification;
-import com.news.app.news.controller.Search;
+import com.news.app.news.controller.SearchActivity;
 import com.news.app.news.view.ViewPagerAdapter;
 
 
@@ -67,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_notification) {
             // Intent i = new Intent(MainActivity.this, Notification.class);
-            Intent i = new Intent(MainActivity.this, Search.class);
+            Intent i = new Intent(MainActivity.this, SearchActivity.class);
             i.putExtra("Notification_type", "Notification");
             startActivity(i);
         } else if (id == R.id.action_help) {
@@ -75,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_about) {
             Toast.makeText(this, "This is About", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.search) {
-            Intent i = new Intent(MainActivity.this, Search.class);
-            i.putExtra("Notification_type", "Search");
+            Intent i = new Intent(MainActivity.this, SearchActivity.class);
+            i.putExtra("Notification_type", "SearchActivity");
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

@@ -11,12 +11,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.news.app.news.R;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
-public class Search extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     public static EditText search_text;
     private CheckBox art_checkbox;
@@ -60,7 +66,7 @@ public class Search extends AppCompatActivity {
             if (notif.equalsIgnoreCase("Notification")) {
                 findViewById(R.id.date_layout).setVisibility(View.GONE);
                 search_button.setVisibility(View.GONE);
-                search_text.setHint("Search query term");
+                search_text.setHint("SearchActivity query term");
             } else {
                 switch_button.setVisibility(View.GONE);
             }
@@ -71,7 +77,7 @@ public class Search extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Search.this, SearchResultActivity.class);
+                Intent intent = new Intent(SearchActivity.this, SearchResultActivity.class);
 
                 String searchText = search_text.getText().toString();
                 intent.putExtra("search_text", searchText);
@@ -79,7 +85,6 @@ public class Search extends AppCompatActivity {
                 intent.putExtra("endDate", "20190807");
 
                 ArrayList<String> sectionList = new ArrayList<>();
-
 
                 if (art_checkbox.isChecked()) {
                     sectionList.add("Arts");
@@ -118,10 +123,10 @@ public class Search extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The toggle is enabled
-                    Toast.makeText(Search.this, "SWITCH IS ENABLED", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "SWITCH IS ENABLED", Toast.LENGTH_SHORT).show();
                 } else {
                     // The toggle is disabled
-                    Toast.makeText(Search.this, "SWITCH IS DISABLED", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "SWITCH IS DISABLED", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -131,7 +136,24 @@ public class Search extends AppCompatActivity {
 
     public void showDatePicker(View v) {
         DialogFragment newFragment = new MyDatePickerFragment();
+
+        if (v.getId() == R.id.begin_date) {
+
+            Bundle myBundle = new Bundle();
+            myBundle.putString("BundleTest", "beginDate");
+
+            newFragment.setArguments(myBundle);
+        }else{
+
+            Bundle myBundle = new Bundle();
+            myBundle.putString("BundleTest", "endDate");
+
+            newFragment.setArguments(myBundle);
+        }
+
         newFragment.show(getSupportFragmentManager(), "date picker");
+
+
     }
 
     @Override
@@ -144,6 +166,21 @@ public class Search extends AppCompatActivity {
     }
 
 
+    public void sendBeginDateValue(String beginDateValue) {
+
+        TextView beginDate = findViewById(R.id.begin_date);
+
+        beginDate.setText(beginDateValue);
+
+    }
+
+    public void sendEndDateValue(String endDateValue) {
+
+        TextView endDate = findViewById(R.id.end_date);
+
+        endDate.setText(endDateValue);
+
+    }
 }
 
 

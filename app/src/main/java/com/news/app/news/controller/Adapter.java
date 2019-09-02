@@ -48,18 +48,18 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
 
         final Results results = apiObject.get(position);
 
-        String ImageUrl= null ;
-        if(apiObject.get(position).getMultimedia().size() > 0 ){
+        String ImageUrl = null;
+        if (apiObject.get(position).getMultimedia().size() > 0) {
             ImageUrl = apiObject.get(position).getMultimedia().get(0).getUrl();
         }
 
 
-        String UpdatedDate = results.getUpdated_date().toString();
+        String UpdatedDate = results.getUpdated_date();
         //String SiteUrl = results.getUrl().toString();
         String section = results.getSection();
 
         try {
-           FormattedDate = processor.dateFormatterA(UpdatedDate);
+            FormattedDate = processor.dateFormatterA(UpdatedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -74,8 +74,8 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, activity_webview.class) ;
-                intent.putExtra("WEBURL", results.getUrl()) ;
+                Intent intent = new Intent(context, activity_webview.class);
+                intent.putExtra("WEBURL", results.getUrl());
                 context.startActivity(intent);
             }
         });
@@ -84,7 +84,7 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
 
     @Override
     public int getItemCount() {
-        if(apiObject == null || apiObject.size() ==0) {
+        if (apiObject == null || apiObject.size() == 0) {
             return 0;
         }
 

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 public class ViewPagerAdapterSearch extends FragmentPagerAdapter {
 
@@ -27,7 +26,7 @@ public class ViewPagerAdapterSearch extends FragmentPagerAdapter {
         switch (position) {
 
             case 0:
-                return new SearchFragment(intent);
+                return new SearchResulsFragment(intent);
             default:
                 return new TopFragment();
 

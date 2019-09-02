@@ -14,13 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.news.app.news.controller.SearchResultActivity;
 import com.news.app.news.R;
 import com.news.app.news.controller.AdapterArticleSearch;
 import com.news.app.news.controller.ApiUtil;
-import com.news.app.news.controller.SearchResultActivity;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 
 import java.util.ArrayList;
@@ -29,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchFragment extends Fragment {
+public class SearchResulsFragment extends Fragment {
 
     private final String TAG = "MYLOG";
     int position;
@@ -38,18 +35,18 @@ public class SearchFragment extends Fragment {
     Intent intent= null ;
 
     @SuppressLint("ValidFragment")
-    public SearchFragment(Intent intent){
+    public SearchResulsFragment(Intent intent){
         this.intent = intent ;
     }
 
-    public SearchFragment(){
+    public SearchResulsFragment(){
 
     }
 
     public static Fragment getInstance(int position) {
         Bundle bundle = new Bundle();
         bundle.putInt("pos", position);
-        SearchFragment tabFragment = new SearchFragment();
+        SearchResulsFragment tabFragment = new SearchResulsFragment();
         tabFragment.setArguments(bundle);
         return tabFragment;
     }
@@ -65,19 +62,12 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        //String searchText = "Trump";
-        //String section = "Politics";
-        //String begin_date = "20170101";
         String apiKey = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
-        //String endDate = "20190807";
 
 
-
-        //ArrayList<String> section =(ArrayList<String>)intent.getSerializableExtra("section");
         ArrayList<String> section = intent.getStringArrayListExtra("section");
 
        String searchText = intent.getStringExtra("search_text");
-      // String section = intent.getStringExtra("section");
        String begin_date = intent.getStringExtra("begin_date");
        String endDate = intent.getStringExtra("endDate");
 

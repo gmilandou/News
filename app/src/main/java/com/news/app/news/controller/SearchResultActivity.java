@@ -1,23 +1,16 @@
 package com.news.app.news.controller;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.news.app.news.view.SearchFragment;
 import com.news.app.news.R;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
-import com.news.app.news.view.SearchFragment;
 import com.news.app.news.view.ViewPagerAdapterSearch;
 
 import java.util.ArrayList;
