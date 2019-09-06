@@ -19,8 +19,11 @@ import com.news.app.news.R;
 import com.news.app.news.controller.AdapterArticleSearch;
 import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
+import com.news.app.news.utility.Processor;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Formatter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,14 +35,14 @@ public class SearchResulsFragment extends Fragment {
     int position;
     private RecyclerView recyclerView;
 
-    Intent intent= null ;
+    Intent intent = null;
 
     @SuppressLint("ValidFragment")
-    public SearchResulsFragment(Intent intent){
-        this.intent = intent ;
+    public SearchResulsFragment(Intent intent) {
+        this.intent = intent;
     }
 
-    public SearchResulsFragment(){
+    public SearchResulsFragment() {
 
     }
 
@@ -50,7 +53,7 @@ public class SearchResulsFragment extends Fragment {
         tabFragment.setArguments(bundle);
         return tabFragment;
     }
- 
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -67,16 +70,25 @@ public class SearchResulsFragment extends Fragment {
 
         ArrayList<String> section = intent.getStringArrayListExtra("section");
 
-       String searchText = intent.getStringExtra("search_text");
-       String begin_date = intent.getStringExtra("begin_date");
-       String endDate = intent.getStringExtra("endDate");
+        String searchText = intent.getStringExtra("search_text");
+        String begin_date = null;
+        try {
+            begin_date = Processor.dateFormatterC(intent.getStringExtra("begin_date"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String endDate = null;
+        try {
+            endDate = Processor.dateFormatterC(intent.getStringExtra("endDate"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
+        Log.d(TAG, "This is my passed data from Fragment: " + begin_date + " and " + endDate);
 
-        Log.d(TAG, "This is my passed data from Fragment: " + section);
 
-
-        ApiUtil.getServiceClass().getSearch(searchText , section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
+        ApiUtil.getServiceClass().getSearch(searchText, section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
             @Override
             public void onResponse(Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
                 if (response.isSuccessful()) {
@@ -94,12 +106,5 @@ public class SearchResulsFragment extends Fragment {
         return view;
 
     }
-
-    /*public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            //String mParam1 = getArguments().getString("params");
-        }
-    }*/
 
 }

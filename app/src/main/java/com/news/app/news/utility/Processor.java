@@ -4,6 +4,7 @@ import com.news.app.news.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -36,6 +37,28 @@ public class Processor {
         FormattedDate = formatter.format(date);
 
         return FormattedDate;
+    }
+
+    public static String dateFormatterC(String DateInput) throws ParseException {
+
+
+        SimpleDateFormat formatDate;
+        formatDate = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = formatDate.parse(DateInput);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        if (month<10){
+            return year + "0" + month + day;
+        }else {
+            return String.valueOf(year) + month + day;
+        }
     }
 
 }

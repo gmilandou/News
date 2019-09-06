@@ -11,14 +11,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.news.app.news.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -33,7 +30,8 @@ public class SearchActivity extends AppCompatActivity {
     private CheckBox travel_checkbox;
     private Button search_button;
     private Switch switch_button;
-
+    String globalBeginDate = "";
+    String globalEndDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +77,20 @@ public class SearchActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(SearchActivity.this, SearchResultActivity.class);
 
+
                 String searchText = search_text.getText().toString();
                 intent.putExtra("search_text", searchText);
-                intent.putExtra("begin_date", "20170101");
-                intent.putExtra("endDate", "20190807");
+
+                if (globalBeginDate.isEmpty()) {
+                    globalBeginDate = "20180911";
+                }
+
+                if (globalEndDate.isEmpty()) {
+                    globalEndDate = "20190911";
+                }
+
+                intent.putExtra("begin_date", globalBeginDate);
+                intent.putExtra("endDate", globalEndDate);
 
                 ArrayList<String> sectionList = new ArrayList<>();
 
@@ -143,7 +151,7 @@ public class SearchActivity extends AppCompatActivity {
             myBundle.putString("BundleTest", "beginDate");
 
             newFragment.setArguments(myBundle);
-        }else{
+        } else {
 
             Bundle myBundle = new Bundle();
             myBundle.putString("BundleTest", "endDate");
@@ -172,6 +180,8 @@ public class SearchActivity extends AppCompatActivity {
 
         beginDate.setText(beginDateValue);
 
+        globalBeginDate = beginDateValue;
+
     }
 
     public void sendEndDateValue(String endDateValue) {
@@ -180,7 +190,10 @@ public class SearchActivity extends AppCompatActivity {
 
         endDate.setText(endDateValue);
 
+        globalEndDate = endDateValue;
+
     }
+
 }
 
 
