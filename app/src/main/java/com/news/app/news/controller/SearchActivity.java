@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.news.app.news.R;
 
 import java.util.ArrayList;
