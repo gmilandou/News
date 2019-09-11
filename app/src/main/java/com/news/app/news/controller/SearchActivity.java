@@ -1,10 +1,14 @@
 package com.news.app.news.controller;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +18,15 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 import com.news.app.news.R;
+import com.news.app.news.view.SearchResulsFragment;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import static android.content.Context.MODE_PRIVATE;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -31,6 +41,9 @@ public class SearchActivity extends AppCompatActivity {
     private Switch switch_button;
     String globalBeginDate = "";
     String globalEndDate = "";
+    ArrayList<String> sectionList = new ArrayList<>();
+    Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +76,20 @@ public class SearchActivity extends AppCompatActivity {
             if (notif.equalsIgnoreCase("Notification")) {
                 findViewById(R.id.date_layout).setVisibility(View.GONE);
                 search_button.setVisibility(View.GONE);
-                search_text.setHint("SearchActivity query term");
+
             } else {
                 switch_button.setVisibility(View.GONE);
+            }
+
+
+            SharedPreferences preferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);//getPreferences(MODE_PRIVATE);
+            String storedSearchQueryTerm = preferences.getString("searchQuery", null);
+
+            if(storedSearchQueryTerm != null & !storedSearchQueryTerm.isEmpty()) {
+                //search_text.setHint(storedSearchQueryTerm);
+                search_text.setText(storedSearchQueryTerm);
+            }else{
+                search_text.setHint("Search query term");
             }
         }
 
@@ -91,7 +115,7 @@ public class SearchActivity extends AppCompatActivity {
                 intent.putExtra("begin_date", globalBeginDate);
                 intent.putExtra("endDate", globalEndDate);
 
-                ArrayList<String> sectionList = new ArrayList<>();
+                // ArrayList<String> sectionList = new ArrayList<>();
 
                 if (art_checkbox.isChecked()) {
                     sectionList.add("Arts");
@@ -115,11 +139,12 @@ public class SearchActivity extends AppCompatActivity {
 
                 if (travel_checkbox.isChecked()) {
                     sectionList.add("Travels");
+                    Toast.makeText(SearchActivity.this, "Travel selected", Toast.LENGTH_SHORT).show();
                 }
 
                 intent.putStringArrayListExtra("section", sectionList);
 
-
+                Log.d("test", "testing: " + sectionList);
                 startActivity(intent);
 
             }
@@ -128,12 +153,95 @@ public class SearchActivity extends AppCompatActivity {
         Switch toggle = findViewById(R.id.switch_button);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
                 if (isChecked) {
+
+                    if (art_checkbox.isChecked()) {
+                        sectionList.add("Arts");
+                    }
+
+                    if (politics_checkbox.isChecked()) {
+                        sectionList.add("Politics");
+                    }
+
+                    if (business_checkbox.isChecked()) {
+                        sectionList.add("Business");
+                    }
+
+                    if (sport_checkbox.isChecked()) {
+                        sectionList.add("Sports");
+                    }
+
+                    if (entrepreneur_checkbox.isChecked()) {
+                        sectionList.add("Entrepreneurs");
+                    }
+
+                    if (travel_checkbox.isChecked()) {
+                        sectionList.add("Travels");
+                    }
+
+                    //SharedPreferences preferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+
+                    //Retriving the existing mood before adding new mood
+                  //  String searchtext = preferences.getString("searchQuery", null);
+
                     // The toggle is enabled
-                    Toast.makeText(SearchActivity.this, "SWITCH IS ENABLED", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "Search query term successfully saved ! " , Toast.LENGTH_LONG).show();
+
+                    /*SharedPreferences prefs= SearchActivity.getApplicationContext().getSharedPreferences("yourPrefsKey", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit=prefs.edit();
+
+                    Set<String> set = new HashSet<String>();
+                    set.addAll(sectionList);
+                    edit.putStringSet("yourKey", set);
+                    edit.commit();*/
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor edit=sharedPreferences.edit();
+
+                    //Set<String> set = new HashSet<>();
+                    //set.addAll(sectionList);
+                    //edit.putStringSet("yourKey", set);
+                    //edit.commit();
+
+
+                    String searchQuery = search_text.getText().toString();
+                    //ArrayList<String> section = sectionList;
+
+                    edit.putString("searchQuery", searchQuery);
+                   // editor.putStringSet("section", (Set<String>) section);
+                    edit.apply();
+                    //Log.d("Test", "I am here for the stored preferences: " + searchQuery + " & " + section);
+
+
+                    //Insertion of Mood using shared preferences
+
+                   // SharedPreferences.Editor editor = preferences.edit();
+
+                    //editor.putString("searchQuery", searchQuery);
+                    //editor.putInt("mMood1Color", newColor);
+                   // editor.apply();
+
                 } else {
                     // The toggle is disabled
-                    Toast.makeText(SearchActivity.this, "SWITCH IS DISABLED", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "Search query term has been disabled", Toast.LENGTH_LONG).show();
+
+                    //Insertion of Mood using shared preferences
+                    SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);//getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+
+                    String searchQuery = "";
+                    //String section = "";
+
+                    editor.putString("searchQuery", searchQuery);
+                    //editor.putString("section", section);
+                    editor.apply();
+
+                    //Log.d("Test", "I am here for the stored preferences: " + section + " & " + section);
+
+
+
                 }
             }
         });

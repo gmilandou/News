@@ -5,8 +5,11 @@ package com.news.app.news.view;
  */
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,25 +18,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.news.app.news.R;
 import com.news.app.news.controller.AdapterArticleSearch;
 import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.utility.Processor;
 
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SearchResulsFragment extends Fragment {
 
     private final String TAG = "MYLOG";
     int position;
     private RecyclerView recyclerView;
+    private Context context;
 
     Intent intent = null;
 
@@ -86,6 +97,10 @@ public class SearchResulsFragment extends Fragment {
 
 
         Log.d(TAG, "This is my passed data from Fragment: " + begin_date + " and " + endDate);
+
+
+       // Log.d(TAG, "Shared preferences: " + arrayList);
+
 
 
         ApiUtil.getServiceClass().getSearch(searchText, section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
