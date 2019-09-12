@@ -1,9 +1,6 @@
 package com.news.app.news.controller;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.webkit.WebView;
@@ -11,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.news.app.news.R;
-import com.news.app.news.model.topstories.NewYorkTimesResponse;
 
 public class NewsViewHolder extends RecyclerView.ViewHolder {
  

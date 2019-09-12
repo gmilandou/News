@@ -1,7 +1,5 @@
 package com.news.app.news.model.articlesearch;
 
-import java.util.List;
-
 /**
  * Created by USER on 4/29/2019.
  */

@@ -39,4 +39,12 @@ public interface RetrofitInterface {
             @Query("api-key") String apiKey
 
     );
+
+
+    @GET("svc/search/v2/articlesearch.json")
+    Call<ArticleSearchResponse> getSavedSearch(
+            @Query("q") String searchText
+
+    );
+
 }

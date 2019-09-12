@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,14 +18,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.news.app.news.R;
-import com.news.app.news.view.SearchResulsFragment;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import static android.content.Context.MODE_PRIVATE;
+
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -85,10 +80,10 @@ public class SearchActivity extends AppCompatActivity {
             SharedPreferences preferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);//getPreferences(MODE_PRIVATE);
             String storedSearchQueryTerm = preferences.getString("searchQuery", null);
 
-            if(storedSearchQueryTerm != null & !storedSearchQueryTerm.isEmpty()) {
+            if (storedSearchQueryTerm != null & !storedSearchQueryTerm.isEmpty()) {
                 //search_text.setHint(storedSearchQueryTerm);
                 search_text.setText(storedSearchQueryTerm);
-            }else{
+            } else {
                 search_text.setHint("Search query term");
             }
         }
@@ -181,47 +176,19 @@ public class SearchActivity extends AppCompatActivity {
                         sectionList.add("Travels");
                     }
 
-                    //SharedPreferences preferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
-
-                    //Retriving the existing mood before adding new mood
-                  //  String searchtext = preferences.getString("searchQuery", null);
-
                     // The toggle is enabled
-                    Toast.makeText(SearchActivity.this, "Search query term successfully saved ! " , Toast.LENGTH_LONG).show();
+                    Toast.makeText(SearchActivity.this, "Search query term successfully saved ! ", Toast.LENGTH_LONG).show();
 
-                    /*SharedPreferences prefs= SearchActivity.getApplicationContext().getSharedPreferences("yourPrefsKey", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor edit=prefs.edit();
-
-                    Set<String> set = new HashSet<String>();
-                    set.addAll(sectionList);
-                    edit.putStringSet("yourKey", set);
-                    edit.commit();*/
 
                     SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-                    SharedPreferences.Editor edit=sharedPreferences.edit();
-
-                    //Set<String> set = new HashSet<>();
-                    //set.addAll(sectionList);
-                    //edit.putStringSet("yourKey", set);
-                    //edit.commit();
-
+                    SharedPreferences.Editor edit = sharedPreferences.edit();
 
                     String searchQuery = search_text.getText().toString();
                     //ArrayList<String> section = sectionList;
 
                     edit.putString("searchQuery", searchQuery);
-                   // editor.putStringSet("section", (Set<String>) section);
+                    // editor.putStringSet("section", (Set<String>) section);
                     edit.apply();
-                    //Log.d("Test", "I am here for the stored preferences: " + searchQuery + " & " + section);
-
-
-                    //Insertion of Mood using shared preferences
-
-                   // SharedPreferences.Editor editor = preferences.edit();
-
-                    //editor.putString("searchQuery", searchQuery);
-                    //editor.putInt("mMood1Color", newColor);
-                   // editor.apply();
 
                 } else {
                     // The toggle is disabled
@@ -239,7 +206,6 @@ public class SearchActivity extends AppCompatActivity {
                     editor.apply();
 
                     //Log.d("Test", "I am here for the stored preferences: " + section + " & " + section);
-
 
 
                 }
