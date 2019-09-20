@@ -41,10 +41,11 @@ public interface RetrofitInterface {
     );
 
 
-    @GET("svc/search/v2/articlesearch.json")
+   /* @GET("svc/search/v2/articlesearch.json")
     Call<ArticleSearchResponse> getSavedSearch(
-            @Query("q") String searchText
+            @Query("q") String searchText,
+            @Query("fq") ArrayList<String> mySectionList
 
     );
-
+*/
 }

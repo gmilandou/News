@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.news.app.news.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class SearchActivity extends AppCompatActivity {
@@ -37,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
     String globalBeginDate = "";
     String globalEndDate = "";
     ArrayList<String> sectionList = new ArrayList<>();
-    Context context;
+
 
 
     @Override
@@ -80,14 +82,13 @@ public class SearchActivity extends AppCompatActivity {
             SharedPreferences preferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);//getPreferences(MODE_PRIVATE);
             String storedSearchQueryTerm = preferences.getString("searchQuery", null);
 
-            if (storedSearchQueryTerm != null & !storedSearchQueryTerm.isEmpty()) {
+            if (storedSearchQueryTerm != null && !storedSearchQueryTerm.isEmpty()) {
                 //search_text.setHint(storedSearchQueryTerm);
                 search_text.setText(storedSearchQueryTerm);
             } else {
                 search_text.setHint("Search query term");
             }
         }
-
 
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,32 +152,48 @@ public class SearchActivity extends AppCompatActivity {
 
 
                 if (isChecked) {
+                    String mySection = "";
+                    String mySection1 = "";
+                    String mySection2 = "";
+                    String mySection3 ="";
+                    String mySection4 ="";
+                    String mySection5 ="";
+                    String mySection6="";
 
                     if (art_checkbox.isChecked()) {
-                        sectionList.add("Arts");
+                         mySection1 = "Arts";
+                        mySection += mySection1 + ",";
                     }
 
                     if (politics_checkbox.isChecked()) {
-                        sectionList.add("Politics");
+                         mySection2 = "Politics";
+                        mySection += mySection2 + ",";
+
                     }
 
                     if (business_checkbox.isChecked()) {
-                        sectionList.add("Business");
+                         mySection3 = "Business";
+                        mySection += mySection3 + ",";
+
                     }
 
                     if (sport_checkbox.isChecked()) {
-                        sectionList.add("Sports");
+                         mySection4 = "Sports";
+                        mySection += mySection4 + ",";
+
                     }
 
                     if (entrepreneur_checkbox.isChecked()) {
-                        sectionList.add("Entrepreneurs");
+                         mySection5 = "Entrepreneurs";
+                         mySection += mySection5  + ",";
                     }
 
                     if (travel_checkbox.isChecked()) {
-                        sectionList.add("Travels");
+                        mySection6 = "Travels" ;
+                        mySection += mySection6 ;
                     }
 
-                    // The toggle is enabled
+
                     Toast.makeText(SearchActivity.this, "Search query term successfully saved ! ", Toast.LENGTH_LONG).show();
 
 
@@ -186,8 +203,15 @@ public class SearchActivity extends AppCompatActivity {
                     String searchQuery = search_text.getText().toString();
                     //ArrayList<String> section = sectionList;
 
+                    Log.d("Test", "Checking my list: " + mySection + " & " + searchQuery);
+
+                 //  List<String> mySectionList = Arrays.asList(mySection.split(","));
+
+                    //Log.d("Test", "Checking my list: " + test);
+                   // Toast.makeText(SearchActivity.this, "here i am " + test, Toast.LENGTH_SHORT).show();
+
                     edit.putString("searchQuery", searchQuery);
-                    // editor.putStringSet("section", (Set<String>) section);
+                    edit.putString("section", mySection);
                     edit.apply();
 
                 } else {
@@ -199,14 +223,13 @@ public class SearchActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = preferences.edit();
 
                     String searchQuery = "";
-                    //String section = "";
+                    String mySection = "";
 
                     editor.putString("searchQuery", searchQuery);
-                    //editor.putString("section", section);
+                    editor.putString("section", mySection);
                     editor.apply();
 
                     //Log.d("Test", "I am here for the stored preferences: " + section + " & " + section);
-
 
                 }
             }
