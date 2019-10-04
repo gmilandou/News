@@ -86,11 +86,10 @@ public class SearchResulsFragment extends Fragment {
         }
 
 
-        Log.d(TAG, "This is my passed data from Fragment: " + begin_date + " and " + endDate);
+        //  Log.d(TAG, "This is my passed data from Fragment: " + begin_date + " and " + endDate);
 
 
-       // Log.d(TAG, "Shared preferences: " + arrayList);
-
+        // Log.d(TAG, "Shared preferences: " + arrayList);
 
 
         ApiUtil.getServiceClass().getSearch(searchText, section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {

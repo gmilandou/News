@@ -21,9 +21,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
 import com.news.app.news.controller.SearchActivity;
 import com.news.app.news.utility.AlarmReceiver;
 import com.news.app.news.view.ViewPagerAdapter;
+
 import java.net.URISyntaxException;
 import java.util.Calendar;
 
@@ -58,14 +60,19 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        //initSearchCriteriaStrg();
+
+
+    }
+
+    /*public void notification(){
+
         try {
             sendNotification("This is a test", "Gildas", Intent.getIntent(Context.NOTIFICATION_SERVICE), 2);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-
-        //initSearchCriteriaStrg();
-    }
+    }*/
 
 
     @Override
@@ -152,9 +159,13 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 57);
-        calendar.set(Calendar.SECOND, 0);
+        //calendar.set(Calendar.HOUR_OF_DAY, 19);
+        //calendar.set(Calendar.MINUTE, 57);
+        //calendar.set(Calendar.SECOND, 0);
+
+        calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
+        calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
+        calendar.set(Calendar.SECOND, 59);
 
         if (alarmManager != null) {
             alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmPendingIntent);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.news.app.news.R;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
@@ -67,6 +68,7 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ArticleSearchResponse> call, Throwable t) {
                 //Log.d(TAG, "error loading from API");
+                Toast.makeText(SearchResultActivity.this, "No result found for this search criteria", Toast.LENGTH_SHORT).show();
             }
         });
 

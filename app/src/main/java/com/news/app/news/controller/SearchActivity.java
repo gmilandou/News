@@ -41,7 +41,6 @@ public class SearchActivity extends AppCompatActivity {
     ArrayList<String> sectionList = new ArrayList<>();
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,42 +154,42 @@ public class SearchActivity extends AppCompatActivity {
                     String mySection = "";
                     String mySection1 = "";
                     String mySection2 = "";
-                    String mySection3 ="";
-                    String mySection4 ="";
-                    String mySection5 ="";
-                    String mySection6="";
+                    String mySection3 = "";
+                    String mySection4 = "";
+                    String mySection5 = "";
+                    String mySection6 = "";
 
                     if (art_checkbox.isChecked()) {
-                         mySection1 = "Arts";
+                        mySection1 = "Arts";
                         mySection += mySection1 + ",";
                     }
 
                     if (politics_checkbox.isChecked()) {
-                         mySection2 = "Politics";
+                        mySection2 = "Politics";
                         mySection += mySection2 + ",";
 
                     }
 
                     if (business_checkbox.isChecked()) {
-                         mySection3 = "Business";
+                        mySection3 = "Business";
                         mySection += mySection3 + ",";
 
                     }
 
                     if (sport_checkbox.isChecked()) {
-                         mySection4 = "Sports";
+                        mySection4 = "Sports";
                         mySection += mySection4 + ",";
 
                     }
 
                     if (entrepreneur_checkbox.isChecked()) {
-                         mySection5 = "Entrepreneurs";
-                         mySection += mySection5  + ",";
+                        mySection5 = "Entrepreneurs";
+                        mySection += mySection5 + ",";
                     }
 
                     if (travel_checkbox.isChecked()) {
-                        mySection6 = "Travels" ;
-                        mySection += mySection6 ;
+                        mySection6 = "Travels";
+                        mySection += mySection6;
                     }
 
 
@@ -203,12 +202,12 @@ public class SearchActivity extends AppCompatActivity {
                     String searchQuery = search_text.getText().toString();
                     //ArrayList<String> section = sectionList;
 
-                    Log.d("Test", "Checking my list: " + mySection + " & " + searchQuery);
+                    //Log.d("Test", "Checking my list: " + mySection + " & " + searchQuery);
 
-                 //  List<String> mySectionList = Arrays.asList(mySection.split(","));
+                    //  List<String> mySectionList = Arrays.asList(mySection.split(","));
 
                     //Log.d("Test", "Checking my list: " + test);
-                   // Toast.makeText(SearchActivity.this, "here i am " + test, Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(SearchActivity.this, "here i am " + test, Toast.LENGTH_SHORT).show();
 
                     edit.putString("searchQuery", searchQuery);
                     edit.putString("section", mySection);
