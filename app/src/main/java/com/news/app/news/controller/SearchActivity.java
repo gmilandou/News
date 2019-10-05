@@ -1,13 +1,11 @@
 package com.news.app.news.controller;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,12 +15,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.news.app.news.R;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class SearchActivity extends AppCompatActivity {
@@ -40,7 +34,6 @@ public class SearchActivity extends AppCompatActivity {
     String globalEndDate = "";
     ArrayList<String> sectionList = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +46,7 @@ public class SearchActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-
         Intent notificationType = getIntent();
-
         search_text = findViewById(R.id.searchText);
         art_checkbox = findViewById(R.id.art_checkbox);
         politics_checkbox = findViewById(R.id.politic_checkbox);
@@ -72,9 +63,11 @@ public class SearchActivity extends AppCompatActivity {
             if (notif.equalsIgnoreCase("Notification")) {
                 findViewById(R.id.date_layout).setVisibility(View.GONE);
                 search_button.setVisibility(View.GONE);
+                toolbar.setTitle("Notification");
 
             } else {
                 switch_button.setVisibility(View.GONE);
+                toolbar.setTitle("Search Articles");
             }
 
 
@@ -94,52 +87,41 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(SearchActivity.this, SearchResultActivity.class);
-
-
                 String searchText = search_text.getText().toString();
                 intent.putExtra("search_text", searchText);
 
                 if (globalBeginDate.isEmpty()) {
                     globalBeginDate = "20180911";
                 }
-
                 if (globalEndDate.isEmpty()) {
                     globalEndDate = "20190911";
                 }
 
                 intent.putExtra("begin_date", globalBeginDate);
                 intent.putExtra("endDate", globalEndDate);
-
                 // ArrayList<String> sectionList = new ArrayList<>();
 
                 if (art_checkbox.isChecked()) {
                     sectionList.add("Arts");
                 }
-
                 if (politics_checkbox.isChecked()) {
                     sectionList.add("Politics");
                 }
-
                 if (business_checkbox.isChecked()) {
                     sectionList.add("Business");
                 }
-
                 if (sport_checkbox.isChecked()) {
                     sectionList.add("Sports");
                 }
-
                 if (entrepreneur_checkbox.isChecked()) {
                     sectionList.add("Entrepreneurs");
                 }
-
                 if (travel_checkbox.isChecked()) {
                     sectionList.add("Travels");
                     Toast.makeText(SearchActivity.this, "Travel selected", Toast.LENGTH_SHORT).show();
                 }
-
                 intent.putStringArrayListExtra("section", sectionList);
-
-                Log.d("test", "testing: " + sectionList);
+                // Log.d("test", "testing: " + sectionList);
                 startActivity(intent);
 
             }
@@ -148,7 +130,6 @@ public class SearchActivity extends AppCompatActivity {
         Switch toggle = findViewById(R.id.switch_button);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
 
                 if (isChecked) {
                     String mySection = "";
@@ -163,77 +144,55 @@ public class SearchActivity extends AppCompatActivity {
                         mySection1 = "Arts";
                         mySection += mySection1 + ",";
                     }
-
                     if (politics_checkbox.isChecked()) {
                         mySection2 = "Politics";
                         mySection += mySection2 + ",";
-
                     }
-
                     if (business_checkbox.isChecked()) {
                         mySection3 = "Business";
                         mySection += mySection3 + ",";
-
                     }
-
                     if (sport_checkbox.isChecked()) {
                         mySection4 = "Sports";
                         mySection += mySection4 + ",";
-
                     }
-
                     if (entrepreneur_checkbox.isChecked()) {
                         mySection5 = "Entrepreneurs";
                         mySection += mySection5 + ",";
                     }
-
                     if (travel_checkbox.isChecked()) {
                         mySection6 = "Travels";
                         mySection += mySection6;
                     }
 
-
                     Toast.makeText(SearchActivity.this, "Search query term successfully saved ! ", Toast.LENGTH_LONG).show();
-
 
                     SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor edit = sharedPreferences.edit();
-
                     String searchQuery = search_text.getText().toString();
                     //ArrayList<String> section = sectionList;
-
                     //Log.d("Test", "Checking my list: " + mySection + " & " + searchQuery);
-
                     //  List<String> mySectionList = Arrays.asList(mySection.split(","));
-
                     //Log.d("Test", "Checking my list: " + test);
                     // Toast.makeText(SearchActivity.this, "here i am " + test, Toast.LENGTH_SHORT).show();
-
                     edit.putString("searchQuery", searchQuery);
                     edit.putString("section", mySection);
                     edit.apply();
-
                 } else {
                     // The toggle is disabled
                     Toast.makeText(SearchActivity.this, "Search query term has been disabled", Toast.LENGTH_LONG).show();
-
                     //Insertion of Mood using shared preferences
                     SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);//getPreferences(MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
-
                     String searchQuery = "";
                     String mySection = "";
-
                     editor.putString("searchQuery", searchQuery);
                     editor.putString("section", mySection);
                     editor.apply();
-
                     //Log.d("Test", "I am here for the stored preferences: " + section + " & " + section);
-
                 }
             }
         });
-
     }
 
 
@@ -241,27 +200,19 @@ public class SearchActivity extends AppCompatActivity {
         DialogFragment newFragment = new MyDatePickerFragment();
 
         if (v.getId() == R.id.begin_date) {
-
             Bundle myBundle = new Bundle();
             myBundle.putString("BundleTest", "beginDate");
-
             newFragment.setArguments(myBundle);
         } else {
-
             Bundle myBundle = new Bundle();
             myBundle.putString("BundleTest", "endDate");
-
             newFragment.setArguments(myBundle);
         }
-
         newFragment.show(getSupportFragmentManager(), "date picker");
-
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (item.getItemId() == android.R.id.home) {
             finish();
         }
@@ -270,21 +221,14 @@ public class SearchActivity extends AppCompatActivity {
 
 
     public void sendBeginDateValue(String beginDateValue) {
-
         TextView beginDate = findViewById(R.id.begin_date);
-
         beginDate.setText(beginDateValue);
-
         globalBeginDate = beginDateValue;
-
     }
 
     public void sendEndDateValue(String endDateValue) {
-
         TextView endDate = findViewById(R.id.end_date);
-
         endDate.setText(endDateValue);
-
         globalEndDate = endDateValue;
 
     }

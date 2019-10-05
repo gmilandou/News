@@ -7,19 +7,28 @@
     android:orientation="vertical"
     tools:context=".controller.SearchActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Notification"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="40dp">
+        android:paddingTop="20dp">
 
         <EditText
             android:id="@+id/searchText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Article search" />
+            android:hint="Search query term" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -114,6 +123,7 @@
                     android:text="Travel" />
             </LinearLayout>
 
+
             <LinearLayout
                 android:id="@+id/date_layout"
                 android:layout_width="match_parent"
@@ -143,13 +153,25 @@
                     android:onClick="showDatePicker"
                     android:text="2017/05/6"
                     android:padding="20dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#00574B"/>
+
             </LinearLayout>
+
+
 
             <Switch
                 android:id="@+id/switch_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/travel_po_layout" />
+                android:layout_below="@+id/travel_po_layout"
+                android:paddingTop="30dp"
+                android:text="Enable notifications (once per day)"/>
+
+
 
         </RelativeLayout>
 
@@ -160,12 +182,6 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
