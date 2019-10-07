@@ -29,6 +29,8 @@ import com.news.app.news.view.ViewPagerAdapter;
 import java.net.URISyntaxException;
 import java.util.Calendar;
 
+import static android.content.Intent.parseUri;
+
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends AppCompatActivity {
@@ -37,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    public static final String NOTIFICATION_CHANNEL_ID = "10001";
-    private final static String default_notification_channel_id = "default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +59,22 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+       // notification();
 
         //initSearchCriteriaStrg();
 
 
     }
 
-    /*public void notification(){
+    public void notification(){
 
         try {
             sendNotification("This is a test", "Gildas", Intent.getIntent(Context.NOTIFICATION_SERVICE), 2);
+           //sendNotification("This is a test", "Gildas", parseUri(Context.NOTIFICATION_SERVICE, 0), 2);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 
     @Override
