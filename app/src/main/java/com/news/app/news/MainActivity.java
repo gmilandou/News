@@ -2,6 +2,7 @@ package com.news.app.news;
 
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,11 +14,13 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -35,17 +38,19 @@ import static android.content.Intent.parseUri;
 @SuppressWarnings("deprecation")
 public class MainActivity extends AppCompatActivity {
 
-
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    public static final String NOTIFICATION_CHANNEL_ID = "10001";
+    private final static String default_notification_channel_id = "default";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initAlarmManager();
+        //initAlarmManager();
 
 
         toolbar = findViewById(R.id.toolbar);
@@ -59,22 +64,24 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-       // notification();
+        // notification();
 
         //initSearchCriteriaStrg();
 
+        scheduleNotification(getNotification( "This is my pop up test" ) , 0 ) ;
+
 
     }
 
-    public void notification(){
+   /* public void notification() {
 
         try {
             sendNotification("This is a test", "Gildas", Intent.getIntent(Context.NOTIFICATION_SERVICE), 2);
-           //sendNotification("This is a test", "Gildas", parseUri(Context.NOTIFICATION_SERVICE, 0), 2);
+            //sendNotification("This is a test", "Gildas", parseUri(Context.NOTIFICATION_SERVICE, 0), 2);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     @Override
@@ -105,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void sendNotification(String message, String title, Intent intent, int not_id) {
+    /*public void sendNotification(String message, String title, Intent intent, int not_id) {
 
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
@@ -148,13 +155,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    */
+
 
     //Initialising searchCriteriaStorage
-    private void initSearchCriteriaStrg() {
-        initAlarmManager();
-    }
+    //private void initSearchCriteriaStrg() {
+    //    initAlarmManager();
+   // }
 
-    private void initAlarmManager() {
+   /* private void initAlarmManager() {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent alarmIntent = new Intent(this, AlarmReceiver.class);
@@ -173,6 +182,46 @@ public class MainActivity extends AppCompatActivity {
             alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmPendingIntent);
 
         }
+    }
+*/
+
+
+    /*@Override
+    protected void onNewIntent(Intent intent) {
+        try {
+            //on click notification
+            Bundle extras = intent.getExtras();
+            if (extras.getBoolean("NotClick")) {
+                Log.d("onclick", "I am going to open the list for display");
+            }
+        } catch (Exception e) {
+            Log.d("onclick", "Exception onclick" + e);
+        }
+    }
+*/
+
+    private void scheduleNotification (Notification notification , int delay) {
+        Intent notificationIntent = new Intent( this, AlarmReceiver. class ) ;
+        notificationIntent.putExtra(AlarmReceiver. NOTIFICATION_ID , 1 ) ;
+        notificationIntent.putExtra(AlarmReceiver. NOTIFICATION , notification) ;
+       /// notificationIntent.putExtra("NotClick", true);
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
+        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        assert alarmManager != null;
+        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
+    }
+
+
+
+    private Notification getNotification (String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
+        builder.setContentTitle( "Scheduled Notification" ) ;
+        builder.setContentText(content) ;
+        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
+        builder.setAutoCancel( true ) ;
+        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
+        return builder.build() ;
     }
 
     /*private void displaySelectedScreen(int id) {
