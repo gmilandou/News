@@ -51,7 +51,7 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
         Doc doc = apiObject.get(position);
 
         String ImageUrl = null;
-        if (apiObject.get(position).getMultimedia().size() > 0) {
+        if (apiObject.get(position).getMultimedia() != null && apiObject.get(position).getMultimedia().size() > 0) {
             ImageUrl = "https://static01.nyt.com/" + apiObject.get(position).getMultimedia().get(0).getUrl();
         }
 

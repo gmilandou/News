@@ -30,6 +30,8 @@ public class AlarmReceiver extends BroadcastReceiver {
     public static String NOTIFICATION = "notification";
     Context GlobalContext;
     private final static String default_notification_channel_id = "default";
+    String[] arraySections;
+    ArrayList<String> mySectionList;
 
     public void onReceive(final Context context, final Intent intent) {
        GlobalContext = context;
@@ -38,12 +40,18 @@ public class AlarmReceiver extends BroadcastReceiver {
         //Retriving the existing mood before adding new mood
         String searchText = preferences.getString("searchQuery", null);
         String section = preferences.getString("section", null);
-        String[] arraySections = section.split(",");
-        ArrayList<String> mySectionList = new ArrayList<>();
-        for (String arraySection : arraySections) {
-            mySectionList.add(arraySection);
-        }
+        //String[] arraySections = section.split(",");
 
+
+        if (section != null) {
+            String[] arraySections = section.split(",");
+
+
+            ArrayList<String> mySectionList = new ArrayList<>();
+            for (String arraySection : arraySections) {
+                mySectionList.add(arraySection);
+            }
+        }
 
         //String begin_date = "20170101";
         //String endDate = "20190807";
