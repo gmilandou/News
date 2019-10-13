@@ -10,12 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.news.app.news.R;
 import com.news.app.news.model.topstories.NewYorkTimesResponse;
 import com.news.app.news.model.topstories.Results;
 import com.news.app.news.view.activity_webview;
 import com.squareup.picasso.Picasso;
 import com.news.app.news.utility.Processor;
+
 import java.text.ParseException;
 import java.util.List;
 

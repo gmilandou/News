@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.news.app.news.R;
+
 import java.util.ArrayList;
 
 
@@ -123,7 +125,6 @@ public class SearchActivity extends AppCompatActivity {
                 intent.putStringArrayListExtra("section", sectionList);
                 // Log.d("test", "testing: " + sectionList);
                 startActivity(intent);
-
             }
         });
 
@@ -170,11 +171,6 @@ public class SearchActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor edit = sharedPreferences.edit();
                     String searchQuery = search_text.getText().toString();
-                    //ArrayList<String> section = sectionList;
-                    //Log.d("Test", "Checking my list: " + mySection + " & " + searchQuery);
-                    //  List<String> mySectionList = Arrays.asList(mySection.split(","));
-                    //Log.d("Test", "Checking my list: " + test);
-                    // Toast.makeText(SearchActivity.this, "here i am " + test, Toast.LENGTH_SHORT).show();
                     edit.putString("searchQuery", searchQuery);
                     edit.putString("section", mySection);
                     edit.apply();
@@ -218,7 +214,6 @@ public class SearchActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     public void sendBeginDateValue(String beginDateValue) {
         TextView beginDate = findViewById(R.id.begin_date);

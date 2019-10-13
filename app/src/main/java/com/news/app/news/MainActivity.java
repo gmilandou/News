@@ -3,37 +3,25 @@ package com.news.app.news;
 
 import android.app.AlarmManager;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.news.app.news.controller.SearchActivity;
+import com.news.app.news.controller.SearchResultActivity;
 import com.news.app.news.utility.AlarmReceiver;
 import com.news.app.news.view.ViewPagerAdapter;
 
-import java.net.URISyntaxException;
 import java.util.Calendar;
-
-import static android.content.Intent.parseUri;
-
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends AppCompatActivity {
@@ -42,16 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
-    private final static String default_notification_channel_id = "default";
+   // private final static String default_notification_channel_id = "default";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //initAlarmManager();
-
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,24 +49,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        // notification();
-
-        //initSearchCriteriaStrg();
-
-        scheduleNotification(getNotification( "This is my pop up test" ) , 0 ) ;
-
-
+        scheduleNotification();
     }
 
-   /* public void notification() {
-
-        try {
-            sendNotification("This is a test", "Gildas", Intent.getIntent(Context.NOTIFICATION_SERVICE), 2);
-            //sendNotification("This is a test", "Gildas", parseUri(Context.NOTIFICATION_SERVICE, 0), 2);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }*/
 
 
     @Override
@@ -112,117 +82,77 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*public void sendNotification(String message, String title, Intent intent, int not_id) {
+    /*@Override
+    protected void onNewIntent (Intent intent) {
+        super .onNewIntent(intent) ;
+        Bundle extras = intent.getExtras() ;
+        if (extras != null ) {
+            if (extras.containsKey( "NotificationMessage" )) {
+                String msg = extras.getString( "NotificationMessage" ) ;
+                //TextView tvNotify = findViewById(R.id. tvNotify ) ;
+                //tvNotify.setText(msg) ;
 
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notification;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            notification
-                    = new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
-                    .setContentTitle(title)
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setContentText(message)
-                    //.setAutoCancel(true)
-                    .setSound(defaultSoundUri)
-                    .setContentIntent(pendingIntent);
-
-        } else {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-            notification
-                    = new NotificationCompat.Builder(this)
-                    .setContentTitle(title)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
-                    .setContentText(message)
-                    //.setAutoCancel(true)
-                    .setColor(Color.parseColor("#1a4994"))
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setLargeIcon(bitmap)
-                    .setSound(defaultSoundUri)
-                    .setContentIntent(pendingIntent);
-
+                //creating and initializing an Intent object
+                Intent intent1 = new Intent(this, SearchResultActivity.class);
+                //attach the key value pair using putExtra to this intent
+                String user_name = "Jhon Doe";
+                intent.putExtra("USER_NAME", user_name);
+                //starting the activity
+                startActivity(intent1);
+            }
         }
+    }*/
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(not_id, notification.build());
+    private void scheduleNotification() {
+        //Intent notificationIntent = new Intent(this, AlarmReceiver.class);
+
+        Intent notificationIntent = new Intent(this, AlarmReceiver.class);
+        //notificationIntent.putExtra(AlarmReceiver.NOTIFICATION, notification);
+      /* notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION, notification);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+*/
 
 
-    }
-    */
 
-
-    //Initialising searchCriteriaStorage
-    //private void initSearchCriteriaStrg() {
-    //    initAlarmManager();
-   // }
-
-   /* private void initAlarmManager() {
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
-        PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
-
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        // long futureInMillis = SystemClock.elapsedRealtime() + delay;
         Calendar calendar = Calendar.getInstance();
-        //calendar.set(Calendar.HOUR_OF_DAY, 19);
-        //calendar.set(Calendar.MINUTE, 57);
-        //calendar.set(Calendar.SECOND, 0);
-
         calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
         calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
         calendar.set(Calendar.SECOND, 59);
-
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {
-            alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmPendingIntent);
-
+            alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
     }
-*/
 
 
-    /*@Override
-    protected void onNewIntent(Intent intent) {
-        try {
-            //on click notification
-            Bundle extras = intent.getExtras();
-            if (extras.getBoolean("NotClick")) {
-                Log.d("onclick", "I am going to open the list for display");
-            }
-        } catch (Exception e) {
-            Log.d("onclick", "Exception onclick" + e);
-        }
+    /*private Notification getNotification(String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, default_notification_channel_id);
+
+        //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.journaldev.com/"));
+        //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        //builder.setContentIntent(pendingIntent);
+
+        Intent notificationIntent = new Intent(MainActivity. this, SearchResultActivity.class ) ;
+        notificationIntent.putExtra( "NotificationMessage" , "I am from Notification" ) ;
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        builder.setContentIntent(pendingIntent);
+
+        builder.setContentTitle("My News App");
+        builder.setSmallIcon(R.drawable.ic_action_name);
+        builder.setContentText(content);
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+        builder.setAutoCancel(true);
+        builder.setChannelId(NOTIFICATION_CHANNEL_ID);
+        builder.setDefaults(Notification.DEFAULT_SOUND);
+
+        return builder.build();
     }
-*/
+    */
 
-    private void scheduleNotification (Notification notification , int delay) {
-        Intent notificationIntent = new Intent( this, AlarmReceiver. class ) ;
-        notificationIntent.putExtra(AlarmReceiver. NOTIFICATION_ID , 1 ) ;
-        notificationIntent.putExtra(AlarmReceiver. NOTIFICATION , notification) ;
-       /// notificationIntent.putExtra("NotClick", true);
-        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
-        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
-        assert alarmManager != null;
-        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
-    }
-
-
-
-    private Notification getNotification (String content) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
-        builder.setContentTitle( "Scheduled Notification" ) ;
-        builder.setContentText(content) ;
-        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
-        builder.setAutoCancel( true ) ;
-        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
-        return builder.build() ;
-    }
 
     /*private void displaySelectedScreen(int id) {
         Fragment fragment = null;

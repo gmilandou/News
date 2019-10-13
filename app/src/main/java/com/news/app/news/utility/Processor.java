@@ -1,5 +1,7 @@
 package com.news.app.news.utility;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,7 +44,10 @@ public class Processor {
 
         SimpleDateFormat formatDate;
         formatDate = new SimpleDateFormat("yyyy/MM/dd");
+
         Date date = formatDate.parse(DateInput);
+
+        Log.d("test", "MyDate: " + DateInput);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -52,9 +57,9 @@ public class Processor {
 
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        if (month<10){
+        if (month < 10) {
             return year + "0" + month + day;
-        }else {
+        } else {
             return String.valueOf(year) + month + day;
         }
     }

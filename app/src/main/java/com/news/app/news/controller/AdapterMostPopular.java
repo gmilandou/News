@@ -53,7 +53,6 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
     public void onBindViewHolder(NewsViewHolder holder, int position) {
         String FormattedDate = null;
         Processor processor = new Processor();
-
         final ResultSearch results = apiObject.get(position);
         String ImageUrl = null;
         if (apiObject.get(position).getMedia().get(0).getMediaMetadata().size() > 0) {
@@ -72,14 +71,12 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
         holder.description.setText(results.getTitle());
         holder.updated_date.setText(FormattedDate);
         holder.section.setText(section + " >");
-
         Picasso.get().load(ImageUrl)
                 .placeholder(R.drawable.index).into(holder.image);
 
         holder.mcontent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(context, activity_webview.class);
                 intent.putExtra("WEBURL", results.getUrl());
                 context.startActivity(intent);

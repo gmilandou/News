@@ -19,7 +19,7 @@ public class RetrofitAPI {
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 // custom interceptor
-               // .addConverterFactory(new DateStringConverterFactory(GsonConverterFactory.create(gson)))
+                // .addConverterFactory(new DateStringConverterFactory(GsonConverterFactory.create(gson)))
 
                 .build();
     }

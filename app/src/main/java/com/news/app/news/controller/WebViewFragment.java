@@ -23,7 +23,7 @@ public class WebViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mWebView = (WebView) mWebView.findViewById(R.id.webview);
+        mWebView = mWebView.findViewById(R.id.webview);
         mWebView.loadUrl("google.com");
 
         // Enable Javascript

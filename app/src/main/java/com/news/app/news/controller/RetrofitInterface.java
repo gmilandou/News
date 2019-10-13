@@ -37,7 +37,6 @@ public interface RetrofitInterface {
             @Query("begin_date") String begin_date,
             @Query("end_date") String endDate,
             @Query("api-key") String apiKey
-
     );
 
 

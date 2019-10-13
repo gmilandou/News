@@ -25,9 +25,7 @@ public class MyDatePickerFragment extends DialogFragment {
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), dateSetListener, year, month, day);
-
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-
         return datePickerDialog;
     }
 
@@ -35,13 +33,11 @@ public class MyDatePickerFragment extends DialogFragment {
             new DatePickerDialog.OnDateSetListener() {
                 public void onDateSet(DatePicker view, int year, int month, int day) {
 
-
                     if (getArguments().getString("BundleTest") != null && "beginDate".equalsIgnoreCase(getArguments().getString("BundleTest"))) {
 
                         String beginDate = view.getYear() +
                                 "/" + (view.getMonth() + 1) +
                                 "/" + view.getDayOfMonth();
-
                         ((SearchActivity) getActivity()).sendBeginDateValue(beginDate);
 
                     } else {
@@ -49,8 +45,6 @@ public class MyDatePickerFragment extends DialogFragment {
                         String endDate = view.getYear() +
                                 "/" + (view.getMonth() + 1) +
                                 "/" + view.getDayOfMonth();
-
-
                         ((SearchActivity) getActivity()).sendEndDateValue(endDate);
 
                     }

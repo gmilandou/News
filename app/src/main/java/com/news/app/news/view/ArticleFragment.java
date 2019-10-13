@@ -17,6 +17,9 @@ import com.news.app.news.R;
 import com.news.app.news.controller.AdapterArticleSearch;
 import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
+import com.news.app.news.model.articlesearch.Doc;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +54,7 @@ public class ArticleFragment extends Fragment {
             @Override
             public void onResponse(Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
                 if (response.isSuccessful()) {
-                    ArticleSearchResponse postList = response.body();
+                    ArrayList<Doc> postList = (ArrayList<Doc>) response.body().getResponse().getDocs();
                     AdapterArticleSearch adapter = new AdapterArticleSearch(getContext(), postList);
                     recyclerView.setAdapter(adapter);
                 }

@@ -1,5 +1,8 @@
 package com.news.app.news.model.articlesearch;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +12,7 @@ import java.util.List;
  * Created by USER on 7/10/2019.
  */
 
-public class Doc {
+public class Doc implements Parcelable {
 
     @SerializedName("web_url")
     @Expose
@@ -65,6 +68,38 @@ public class Doc {
     @SerializedName("uri")
     @Expose
     private String uri;
+
+    protected Doc(Parcel in) {
+        webUrl = in.readString();
+        snippet = in.readString();
+        leadParagraph = in.readString();
+        _abstract = in.readString();
+        source = in.readString();
+        pubDate = in.readString();
+        documentType = in.readString();
+        newsDesk = in.readString();
+        sectionName = in.readString();
+        typeOfMaterial = in.readString();
+        id = in.readString();
+        if (in.readByte() == 0) {
+            wordCount = null;
+        } else {
+            wordCount = in.readInt();
+        }
+        uri = in.readString();
+    }
+
+    public static final Creator<Doc> CREATOR = new Creator<Doc>() {
+        @Override
+        public Doc createFromParcel(Parcel in) {
+            return new Doc(in);
+        }
+
+        @Override
+        public Doc[] newArray(int size) {
+            return new Doc[size];
+        }
+    };
 
     public String getWebUrl() {
         return webUrl;
@@ -210,4 +245,30 @@ public class Doc {
         this.uri = uri;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(webUrl);
+        dest.writeString(snippet);
+        dest.writeString(leadParagraph);
+        dest.writeString(_abstract);
+        dest.writeString(source);
+        dest.writeString(pubDate);
+        dest.writeString(documentType);
+        dest.writeString(newsDesk);
+        dest.writeString(sectionName);
+        dest.writeString(typeOfMaterial);
+        dest.writeString(id);
+        if (wordCount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(wordCount);
+        }
+        dest.writeString(uri);
+    }
 }
