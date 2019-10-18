@@ -1,9 +1,5 @@
 package com.news.app.news.view;
 
-/**
- * Created by USER on 4/29/2019.
- */
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
