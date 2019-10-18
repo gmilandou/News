@@ -7,7 +7,7 @@ import android.webkit.WebView;
 
 import com.news.app.news.R;
 
-public class activity_webview extends AppCompatActivity {
+public class ActivityWebview extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,8 +15,8 @@ public class activity_webview extends AppCompatActivity {
         setContentView(R.layout.activity_webview);
 
         Intent intent = getIntent();
-        WebView webview = findViewById(R.id.webview);
+        WebView webView = findViewById(R.id.webview);
 
-        webview.loadUrl(intent.getStringExtra("WEBURL"));
+        webView.loadUrl(intent.getStringExtra("WEBURL"));
     }
 }

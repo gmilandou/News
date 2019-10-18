@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class TopFragment extends Fragment {
 
     private final String TAG = "MYLOG";
-    int position;
+    //int position;
     private RecyclerView recyclerView;
 
     public static Fragment getInstance(int position) {
@@ -41,7 +41,7 @@ public class TopFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_id);
+        recyclerView = view.findViewById(R.id.recycler_id);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);

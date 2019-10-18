@@ -13,41 +13,41 @@ import java.util.Date;
 
 public class Processor {
 
-    public String dateFormatterA(String DateTime) throws ParseException {
+    public String dateFormatterA(String dateTime) throws ParseException {
 
-        String FormattedDate;
+        String formattedDate;
 
         SimpleDateFormat formatDate;
         formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        Date date = formatDate.parse(DateTime);
+        Date date = formatDate.parse(dateTime);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
-        FormattedDate = formatter.format(date);
+        formattedDate = formatter.format(date);
 
-        return FormattedDate;
+        return formattedDate;
     }
 
-    public String dateFormatterB(String DateInput) throws ParseException {
+    public String dateFormatterB(String dateInput) throws ParseException {
 
-        String FormattedDate;
+        String formattedDate;
 
         SimpleDateFormat formatDate;
         formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = formatDate.parse(DateInput);
+        Date date = formatDate.parse(dateInput);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
-        FormattedDate = formatter.format(date);
+        formattedDate = formatter.format(date);
 
-        return FormattedDate;
+        return formattedDate;
     }
 
-    public static String dateFormatterC(String DateInput) throws ParseException {
+    public static String dateFormatterC(String dateInput) throws ParseException {
 
 
         SimpleDateFormat formatDate;
         formatDate = new SimpleDateFormat("yyyy/MM/dd");
 
-        Date date = formatDate.parse(DateInput);
+        Date date = formatDate.parse(dateInput);
 
-        Log.d("test", "MyDate: " + DateInput);
+        Log.d("test", "MyDate: " + dateInput);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

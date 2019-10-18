@@ -34,7 +34,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     ArrayList<String> mySectionList;
 
     public void onReceive(final Context context, final Intent intent) {
-       GlobalContext = context;
+        GlobalContext = context;
 
         SharedPreferences preferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         //Retriving the existing mood before adding new mood
@@ -53,8 +53,6 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
         }
 
-        //String begin_date = "20170101";
-        //String endDate = "20190807";
 
         ApiUtil.getServiceClass().getSearch(searchText, mySectionList, "2019-09-01T22:27:50+0000", "2019-10-10T22:27:50+0000", "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk").enqueue(new Callback<ArticleSearchResponse>() {
             @Override
@@ -94,7 +92,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         //builder.setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager) GlobalContext.getSystemService(Context.NOTIFICATION_SERVICE);
-       // Notification notification = intent.getParcelableExtra(NOTIFICATION);
+        // Notification notification = intent.getParcelableExtra(NOTIFICATION);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -102,14 +100,13 @@ public class AlarmReceiver extends BroadcastReceiver {
             assert notificationManager != null;
             notificationManager.createNotificationChannel(notificationChannel);
         }
-       // int id = 1;//intent.getIntExtra(NOTIFICATION_ID, 0);
-       // assert notificationManager != null;
-       // notificationManager.notify(id, notification);
+        // int id = 1;//intent.getIntExtra(NOTIFICATION_ID, 0);
+        // assert notificationManager != null;
+        // notificationManager.notify(id, notification);
 
 
-
-        Intent notificationIntent = new Intent(GlobalContext, SearchResultActivity.class ) ;
-        notificationIntent.putExtra( "NotificationMessage" , "I am from Notification" );
+        Intent notificationIntent = new Intent(GlobalContext, SearchResultActivity.class);
+        notificationIntent.putExtra("NotificationMessage", "I am from Notification");
         notificationIntent.putParcelableArrayListExtra("ListObject", postList);
         PendingIntent pendingIntent = PendingIntent.getActivity(GlobalContext, 0, notificationIntent, 0);
 

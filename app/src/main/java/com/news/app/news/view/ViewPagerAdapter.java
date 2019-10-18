@@ -30,7 +30,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return new ArticleFragment();
             default:
-                return new TopFragment();
+               return new TopFragment();
 
         }
     }

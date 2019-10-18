@@ -17,7 +17,7 @@ import com.news.app.news.R;
 import com.news.app.news.controller.AdapterMostPopular;
 import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
-//import com.news.app.news.model.topstories.NewYorkTimesResponse;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +42,7 @@ public class MostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_id);
+        recyclerView = view.findViewById(R.id.recycler_id);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);

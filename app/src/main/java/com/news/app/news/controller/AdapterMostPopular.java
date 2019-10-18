@@ -16,7 +16,7 @@ import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
 import com.news.app.news.model.mostpopular.Multimedia;
 import com.news.app.news.model.mostpopular.ResultSearch;
 import com.news.app.news.utility.Processor;
-import com.news.app.news.view.activity_webview;
+import com.news.app.news.view.ActivityWebview;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -77,7 +77,7 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
         holder.mcontent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, activity_webview.class);
+                Intent intent = new Intent(context, ActivityWebview.class);
                 intent.putExtra("WEBURL", results.getUrl());
                 context.startActivity(intent);
             }

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.news.app.news.R;
 import com.news.app.news.model.topstories.NewYorkTimesResponse;
 import com.news.app.news.model.topstories.Results;
-import com.news.app.news.view.activity_webview;
+import com.news.app.news.view.ActivityWebview;
 import com.squareup.picasso.Picasso;
 import com.news.app.news.utility.Processor;
 
@@ -44,39 +44,39 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
 
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
-        String FormattedDate = null;
+        String formattedDate = null;
 
         Processor processor = new Processor();
 
         final Results results = apiObject.get(position);
 
-        String ImageUrl = null;
+        String imageUrl = null;
         if (apiObject.get(position).getMultimedia().size() > 0) {
-            ImageUrl = apiObject.get(position).getMultimedia().get(0).getUrl();
+            imageUrl = apiObject.get(position).getMultimedia().get(0).getUrl();
         }
 
 
-        String UpdatedDate = results.getUpdated_date();
-        //String SiteUrl = results.getUrl().toString();
+        String updatedDate = results.getUpdated_date();
+        //String siteUrl = results.getUrl().toString();
         String section = results.getSection();
 
         try {
-            FormattedDate = processor.dateFormatterA(UpdatedDate);
+            formattedDate = processor.dateFormatterA(updatedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         holder.description.setText(results.getTitle());
-        holder.updated_date.setText(FormattedDate);
+        holder.updated_date.setText(formattedDate);
         holder.section.setText(section + " >");
-        Picasso.get().load(ImageUrl)
+        Picasso.get().load(imageUrl)
                 .placeholder(R.drawable.index).into(holder.image);
 
         holder.mcontent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, activity_webview.class);
+                Intent intent = new Intent(context, ActivityWebview.class);
                 intent.putExtra("WEBURL", results.getUrl());
                 context.startActivity(intent);
             }

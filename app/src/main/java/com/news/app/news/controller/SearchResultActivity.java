@@ -51,30 +51,6 @@ public class SearchResultActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-     /*   ArrayList<String> section = (ArrayList<String>) intent.getSerializableExtra("section");
-        final String searchText = intent.getStringExtra("search_text");
-        String begin_date = "20170101";
-        String endDate = "20190807";
-        String apiKey = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
-
-
-        ApiUtil.getServiceClass().getSearch(searchText, section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
-            @Override
-            public void onResponse(Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
-                if (response.isSuccessful()) {
-                }
-            }
-
-
-            @Override
-            public void onFailure(Call<ArticleSearchResponse> call, Throwable t) {
-                //Log.d(TAG, "error loading from API");
-                Toast.makeText(SearchResultActivity.this, "No result found for this search criteria", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-      */
 
         recyclerView = findViewById(R.id.recycler_id_search);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);

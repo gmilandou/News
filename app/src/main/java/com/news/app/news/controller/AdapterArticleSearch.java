@@ -12,10 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.news.app.news.R;
-import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.model.articlesearch.Doc;
 import com.news.app.news.utility.Processor;
-import com.news.app.news.view.activity_webview;
+import com.news.app.news.view.ActivityWebview;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -46,35 +45,35 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
     @Override
     public void onBindViewHolder(NewsViewHolder holder, final int position) {
 
-        String FormattedDate = null;
+        String formattedDate = null;
         Processor processor = new Processor();
         Doc doc = apiObject.get(position);
 
-        String ImageUrl = null;
+        String imageUrl = null;
         if (apiObject.get(position).getMultimedia() != null && apiObject.get(position).getMultimedia().size() > 0) {
-            ImageUrl = "https://static01.nyt.com/" + apiObject.get(position).getMultimedia().get(0).getUrl();
+            imageUrl = "https://static01.nyt.com/" + apiObject.get(position).getMultimedia().get(0).getUrl();
         }
 
         String brief = doc.getSnippet();
         holder.description.setText(brief);
-        String UpdatedDate = doc.getPubDate();
+        String updatedDate = doc.getPubDate();
         String section = doc.getSectionName();
 
-        Picasso.get().load(ImageUrl)
+        Picasso.get().load(imageUrl)
                 .placeholder(R.drawable.index).into(holder.image);
 
         try {
-            FormattedDate = processor.dateFormatterA(UpdatedDate);
+            formattedDate = processor.dateFormatterA(updatedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        holder.updated_date.setText(FormattedDate);
+        holder.updated_date.setText(formattedDate);
         holder.section.setText(section + " >");
         holder.mcontent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, activity_webview.class);
+                Intent intent = new Intent(context, ActivityWebview.class);
                 intent.putExtra("WEBURL", apiObject.get(position).getWebUrl());
                 context.startActivity(intent);
             }

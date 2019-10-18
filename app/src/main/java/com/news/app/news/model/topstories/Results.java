@@ -143,8 +143,8 @@ public class Results {
     }
 
     //public void setMultimedia(Multimedia[] multimedia) {
-       // this.multimedia = multimedia;
-   // }
+    // this.multimedia = multimedia;
+    // }
 
     public void setMultimedia(List<Multimedia> multimedia) {
         this.multimedia = multimedia;

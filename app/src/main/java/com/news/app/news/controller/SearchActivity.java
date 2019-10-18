@@ -24,14 +24,14 @@ import java.util.ArrayList;
 public class SearchActivity extends AppCompatActivity {
 
     public static EditText search_text;
-    private CheckBox art_checkbox;
-    private CheckBox politics_checkbox;
-    private CheckBox business_checkbox;
-    private CheckBox sport_checkbox;
-    private CheckBox entrepreneur_checkbox;
-    private CheckBox travel_checkbox;
-    private Button search_button;
-    private Switch switch_button;
+    private CheckBox artCheckbox;
+    private CheckBox politicsCheckbox;
+    private CheckBox businessCheckbox;
+    private CheckBox sportCheckbox;
+    private CheckBox entrepreneurCheckbox;
+    private CheckBox travelCheckbox;
+    private Button searchButton;
+    private Switch switchButton;
     String globalBeginDate = "";
     String globalEndDate = "";
     ArrayList<String> sectionList = new ArrayList<>();
@@ -50,25 +50,25 @@ public class SearchActivity extends AppCompatActivity {
 
         Intent notificationType = getIntent();
         search_text = findViewById(R.id.searchText);
-        art_checkbox = findViewById(R.id.art_checkbox);
-        politics_checkbox = findViewById(R.id.politic_checkbox);
-        business_checkbox = findViewById(R.id.business_checkbox);
-        sport_checkbox = findViewById(R.id.sport_checkbox);
-        entrepreneur_checkbox = findViewById(R.id.entre_checkbox);
-        travel_checkbox = findViewById(R.id.travel_checkbox);
-        search_button = findViewById(R.id.button);
-        switch_button = findViewById(R.id.switch_button);
+        artCheckbox = findViewById(R.id.art_checkbox);
+        politicsCheckbox = findViewById(R.id.politic_checkbox);
+        businessCheckbox = findViewById(R.id.business_checkbox);
+        sportCheckbox = findViewById(R.id.sport_checkbox);
+        entrepreneurCheckbox = findViewById(R.id.entre_checkbox);
+        travelCheckbox = findViewById(R.id.travel_checkbox);
+        searchButton = findViewById(R.id.button);
+        switchButton = findViewById(R.id.switch_button);
 
         String notif = notificationType.getStringExtra("Notification_type");
         if (notif != null) {
 
             if (notif.equalsIgnoreCase("Notification")) {
                 findViewById(R.id.date_layout).setVisibility(View.GONE);
-                search_button.setVisibility(View.GONE);
+                searchButton.setVisibility(View.GONE);
                 toolbar.setTitle("Notification");
 
             } else {
-                switch_button.setVisibility(View.GONE);
+                switchButton.setVisibility(View.GONE);
                 toolbar.setTitle("Search Articles");
             }
 
@@ -84,7 +84,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
 
-        search_button.setOnClickListener(new View.OnClickListener() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -103,22 +103,22 @@ public class SearchActivity extends AppCompatActivity {
                 intent.putExtra("endDate", globalEndDate);
                 // ArrayList<String> sectionList = new ArrayList<>();
 
-                if (art_checkbox.isChecked()) {
+                if (artCheckbox.isChecked()) {
                     sectionList.add("Arts");
                 }
-                if (politics_checkbox.isChecked()) {
+                if (politicsCheckbox.isChecked()) {
                     sectionList.add("Politics");
                 }
-                if (business_checkbox.isChecked()) {
+                if (businessCheckbox.isChecked()) {
                     sectionList.add("Business");
                 }
-                if (sport_checkbox.isChecked()) {
+                if (sportCheckbox.isChecked()) {
                     sectionList.add("Sports");
                 }
-                if (entrepreneur_checkbox.isChecked()) {
+                if (entrepreneurCheckbox.isChecked()) {
                     sectionList.add("Entrepreneurs");
                 }
-                if (travel_checkbox.isChecked()) {
+                if (travelCheckbox.isChecked()) {
                     sectionList.add("Travels");
                     Toast.makeText(SearchActivity.this, "Travel selected", Toast.LENGTH_SHORT).show();
                 }
@@ -141,27 +141,27 @@ public class SearchActivity extends AppCompatActivity {
                     String mySection5 = "";
                     String mySection6 = "";
 
-                    if (art_checkbox.isChecked()) {
+                    if (artCheckbox.isChecked()) {
                         mySection1 = "Arts";
                         mySection += mySection1 + ",";
                     }
-                    if (politics_checkbox.isChecked()) {
+                    if (politicsCheckbox.isChecked()) {
                         mySection2 = "Politics";
                         mySection += mySection2 + ",";
                     }
-                    if (business_checkbox.isChecked()) {
+                    if (businessCheckbox.isChecked()) {
                         mySection3 = "Business";
                         mySection += mySection3 + ",";
                     }
-                    if (sport_checkbox.isChecked()) {
+                    if (sportCheckbox.isChecked()) {
                         mySection4 = "Sports";
                         mySection += mySection4 + ",";
                     }
-                    if (entrepreneur_checkbox.isChecked()) {
+                    if (entrepreneurCheckbox.isChecked()) {
                         mySection5 = "Entrepreneurs";
                         mySection += mySection5 + ",";
                     }
-                    if (travel_checkbox.isChecked()) {
+                    if (travelCheckbox.isChecked()) {
                         mySection6 = "Travels";
                         mySection += mySection6;
                     }

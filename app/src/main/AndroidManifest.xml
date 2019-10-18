@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity_webview" />
+        <activity android:name=".view.ActivityWebview" />
         <activity
             android:name=".controller.Notification"
             android:label="@string/title_activity_notification"
