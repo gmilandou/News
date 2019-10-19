@@ -45,7 +45,7 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull NewsViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final NewsViewHolder  holder, int position) {
 
         String formattedDate = null;
         Processor processor = new Processor();
@@ -76,7 +76,7 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, ActivityWebview.class);
-                intent.putExtra("WEBURL", apiObject.get(position).getWebUrl());
+                intent.putExtra("WEBURL", apiObject.get(holder.getAdapterPosition()).getWebUrl());
                 context.startActivity(intent);
             }
         });
