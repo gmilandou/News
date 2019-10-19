@@ -13,6 +13,7 @@ android {
         // applicationId "com.inducesmile.retrofit2"
         applicationId "com.news.app.news"//inducesmile.retrofit2
         minSdkVersion 16
+        //noinspection OldTargetApi
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -36,23 +37,31 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //noinspection GradleCompatible
+    //noinspection GradleDependency,GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    //noinspection GradleDependency
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    //noinspection GradleDependency
     implementation 'com.android.support:cardview-v7:27.1.0'
+    //noinspection GradleDependency
     implementation 'com.android.support:recyclerview-v7:27.1.0'
+    //noinspection GradleDependency
     implementation 'com.android.support:design:27.1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //noinspection GradleDependency
     implementation 'com.google.code.gson:gson:2.8.0'
     testImplementation 'junit:junit:4.12'
+    //noinspection GradleDependency
     testImplementation  'com.android.support.test:runner:1.0.1'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //implementation 'com.android.support:appcompat-v7:26.1.1'
     implementation 'com.android.support:design:27.1.1'
+    //noinspection GradleDependency
     implementation 'com.android.support:support-v4:27.0.2'
+    //noinspection GradleDependency
     implementation 'com.android.support:design:27.0.2'
 
 
@@ -61,6 +70,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 
 
+    //noinspection GradleDependency
     implementation 'com.android.support:support-annotations:27.1.1'
 
 
