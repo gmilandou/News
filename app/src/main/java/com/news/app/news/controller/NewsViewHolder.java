@@ -3,7 +3,6 @@ package com.news.app.news.controller;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,18 +11,18 @@ import com.news.app.news.R;
 
 public class NewsViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView title;
-    public TextView description;
-    public TextView updated_date;
-    public ImageView image;
+    //public TextView title;
+    final TextView description;
+    final TextView updated_date;
+    final ImageView image;
     //public WebView webView;
-    public WebView webView;
-    public String Siteurl;
-    public LinearLayout mcontent;
-    public TextView section;
+    //public WebView webView;
+    //public String Siteurl;
+    final LinearLayout mcontent;
+    public final TextView section;
 
 
-    public NewsViewHolder(View itemView) {
+    NewsViewHolder(View itemView) {
         super(itemView);
 
         //title = (TextView) itemView.findViewById(R.id.post_title);

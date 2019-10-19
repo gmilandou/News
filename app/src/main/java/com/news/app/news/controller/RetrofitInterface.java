@@ -1,7 +1,7 @@
 package com.news.app.news.controller;
 
-/**
- * Created by USER on 4/22/2019.
+/*
+ Created by USER on 4/22/2019.
  */
 
 

@@ -1,9 +1,5 @@
 package com.news.app.news.model.articlesearch;
 
-/**
- * Created by USER on 7/10/2019.
- */
-
 import java.util.List;
 
 import com.google.gson.annotations.Expose;

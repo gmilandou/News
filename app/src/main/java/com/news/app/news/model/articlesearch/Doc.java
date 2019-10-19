@@ -69,7 +69,7 @@ public class Doc implements Parcelable {
     @Expose
     private String uri;
 
-    protected Doc(Parcel in) {
+    private Doc(Parcel in) {
         webUrl = in.readString();
         snippet = in.readString();
         leadParagraph = in.readString();

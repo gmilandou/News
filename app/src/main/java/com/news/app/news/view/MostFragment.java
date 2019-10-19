@@ -1,9 +1,5 @@
 package com.news.app.news.view;
 
-/**
- * Created by USER on 4/29/2019.
- */
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +14,8 @@ import com.news.app.news.controller.AdapterMostPopular;
 import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
 
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,7 +51,7 @@ public class MostFragment extends Fragment {
             public void onResponse(Call<MostPopularNYTResponse> call, Response<MostPopularNYTResponse> response) {
                 if (response.isSuccessful()) {
                     MostPopularNYTResponse postList = response.body();
-                    AdapterMostPopular adapter = new AdapterMostPopular(getContext(), postList);
+                    AdapterMostPopular adapter = new AdapterMostPopular(getContext(), Objects.requireNonNull(postList));
                     recyclerView.setAdapter(adapter);
                 }
             }

@@ -1,5 +1,6 @@
 package com.news.app.news.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,18 +24,20 @@ import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
 
-    public static EditText search_text;
+    private EditText search_text;
     private CheckBox artCheckbox;
     private CheckBox politicsCheckbox;
     private CheckBox businessCheckbox;
     private CheckBox sportCheckbox;
     private CheckBox entrepreneurCheckbox;
     private CheckBox travelCheckbox;
-    private Button searchButton;
-    private Switch switchButton;
-    String globalBeginDate = "";
-    String globalEndDate = "";
-    ArrayList<String> sectionList = new ArrayList<>();
+    private String globalBeginDate;
+    private String globalEndDate = "";
+    private final ArrayList<String> sectionList = new ArrayList<>();
+
+    public SearchActivity() {
+        globalBeginDate = "";
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,8 @@ public class SearchActivity extends AppCompatActivity {
         sportCheckbox = findViewById(R.id.sport_checkbox);
         entrepreneurCheckbox = findViewById(R.id.entre_checkbox);
         travelCheckbox = findViewById(R.id.travel_checkbox);
-        searchButton = findViewById(R.id.button);
-        switchButton = findViewById(R.id.switch_button);
+        Button searchButton = findViewById(R.id.searchButton);
+        Switch switchButton = findViewById(R.id.switch_button);
 
         String notif = notificationType.getStringExtra("Notification_type");
         if (notif != null) {
@@ -128,18 +131,18 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        Switch toggle = findViewById(R.id.switch_button);
+        @SuppressLint("CutPasteId") Switch toggle = findViewById(R.id.switch_button);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
                     String mySection = "";
-                    String mySection1 = "";
-                    String mySection2 = "";
-                    String mySection3 = "";
-                    String mySection4 = "";
-                    String mySection5 = "";
-                    String mySection6 = "";
+                    String mySection1;
+                    String mySection2;
+                    String mySection3;
+                    String mySection4;
+                    String mySection5;
+                    String mySection6;
 
                     if (artCheckbox.isChecked()) {
                         mySection1 = "Arts";
@@ -185,7 +188,6 @@ public class SearchActivity extends AppCompatActivity {
                     editor.putString("searchQuery", searchQuery);
                     editor.putString("section", mySection);
                     editor.apply();
-                    //Log.d("Test", "I am here for the stored preferences: " + section + " & " + section);
                 }
             }
         });

@@ -8,6 +8,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -18,6 +21,8 @@ import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.model.articlesearch.Doc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +31,11 @@ import retrofit2.Response;
 import static com.news.app.news.MainActivity.NOTIFICATION_CHANNEL_ID;
 
 public class AlarmReceiver extends BroadcastReceiver {
-    //private static String NOTIFICATION_ID = "1";//"notification-id";
-    public static String NOTIFICATION = "notification";
-    Context GlobalContext;
+//    public static String NOTIFICATION = "notification";
+private Context GlobalContext;
     private final static String default_notification_channel_id = "default";
-    String[] arraySections;
-    ArrayList<String> mySectionList;
+    //String[] arraySections;
+    private ArrayList<String> mySectionList;
 
     public void onReceive(final Context context, final Intent intent) {
         GlobalContext = context;
@@ -47,29 +51,27 @@ public class AlarmReceiver extends BroadcastReceiver {
             String[] arraySections = section.split(",");
 
 
-            ArrayList<String> mySectionList = new ArrayList<>();
-            for (String arraySection : arraySections) {
-                mySectionList.add(arraySection);
-            }
+            ArrayList<String> mySectionList = new ArrayList<>(Arrays.asList(arraySections));
         }
 
 
         ApiUtil.getServiceClass().getSearch(searchText, mySectionList, "2019-09-01T22:27:50+0000", "2019-10-10T22:27:50+0000", "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk").enqueue(new Callback<ArticleSearchResponse>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
-            public void onResponse(Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
+            public void onResponse(@NonNull Call<ArticleSearchResponse> call, @NonNull Response<ArticleSearchResponse> response) {
                 if (response.isSuccessful()) {
                     ArticleSearchResponse postList = response.body();
 
-                    Log.d("Test", "Web service successfully called: ");
-                    Log.d("Log printing", "onResponse: " + postList.getResponse().getDocs());
+                  //  Log.d("Test", "Web service successfully called: ");
+                  //  Log.d("Log printing", "onResponse: " + postList.getResponse().getDocs());
 
-                    if (postList.getResponse().getDocs() == null || postList.getResponse().getDocs().isEmpty()) {
-                        Log.d("Log printing", "onResponse: No Data found for the saved shared preference");
+                    if (Objects.requireNonNull(postList).getResponse().getDocs() == null || postList.getResponse().getDocs().isEmpty()) {
+                     //   Log.d("Log printing", "onResponse: No Data found for the saved shared preference");
                     } else {
 
                         //Setting my notification
 
-                        getNotification(("Hello Buddy,  There are some news that much your daily store search criteria, check them out !"), (ArrayList<Doc>) postList.getResponse().getDocs());
+                        getNotification((ArrayList<Doc>) postList.getResponse().getDocs());
 
                     }
 
@@ -77,14 +79,14 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
 
             @Override
-            public void onFailure(Call<ArticleSearchResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<ArticleSearchResponse> call, @NonNull Throwable t) {
                 Log.d("TAG", "error loading from API");
             }
         });
     }
 
 
-    private void getNotification(String content, ArrayList<Doc> postList) {
+    private void getNotification(ArrayList<Doc> postList) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(GlobalContext, default_notification_channel_id);
 
         //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.journaldev.com/"));
@@ -114,13 +116,14 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         builder.setContentTitle("My News App");
         builder.setSmallIcon(R.drawable.ic_action_name);
-        builder.setContentText(content);
+        builder.setContentText("Hello Buddy,  There are some news that much your daily store search criteria, check them out !");
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
         builder.setAutoCancel(true);
         builder.setChannelId(NOTIFICATION_CHANNEL_ID);
         builder.setDefaults(Notification.DEFAULT_SOUND);
 
         Notification notification = builder.build();
+        assert notificationManager != null;
         notificationManager.notify(1, notification);
     }
 

@@ -1,9 +1,5 @@
 package com.news.app.news.view;
 
-/**
- * Created by USER on 4/29/2019.
- */
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +13,8 @@ import com.news.app.news.R;
 import com.news.app.news.controller.Adapter;
 import com.news.app.news.controller.ApiUtil;
 import com.news.app.news.model.topstories.NewYorkTimesResponse;
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,7 +51,7 @@ public class TopFragment extends Fragment {
             public void onResponse(Call<NewYorkTimesResponse> call, Response<NewYorkTimesResponse> response) {
                 if (response.isSuccessful()) {
                     NewYorkTimesResponse postList = response.body();
-                    Adapter adapter = new Adapter(getContext(), postList);
+                    Adapter adapter = new Adapter(getContext(), Objects.requireNonNull(postList));
                     recyclerView.setAdapter(adapter);
                 }
             }

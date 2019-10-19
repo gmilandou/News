@@ -1,5 +1,6 @@
 package com.news.app.news.model.topstories;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -200,6 +201,6 @@ public class Results {
 
     @Override
     public String toString() {
-        return "Result [per_facet = " + per_facet + ", subsection = " + subsection + ", item_type = " + item_type + ", org_facet = " + org_facet + ", section = " + section + ", abstract = " + _abstract + ", title = " + title + ", des_facet = " + des_facet + ", url = " + url + ", short_url = " + short_url + ", material_type_facet = " + material_type_facet + ", multimedia = " + multimedia + ", geo_facet = " + geo_facet + ", updated_date = " + updated_date + ", created_date = " + created_date + ", byline = " + byline + ", published_date = " + published_date + ", kicker = " + kicker + "]";
+        return "Result [per_facet = " + per_facet + ", subsection = " + subsection + ", item_type = " + item_type + ", org_facet = " + Arrays.toString(org_facet) + ", section = " + section + ", abstract = " + _abstract + ", title = " + title + ", des_facet = " + des_facet + ", url = " + url + ", short_url = " + short_url + ", material_type_facet = " + material_type_facet + ", multimedia = " + multimedia + ", geo_facet = " + Arrays.toString(geo_facet) + ", updated_date = " + updated_date + ", created_date = " + created_date + ", byline = " + byline + ", published_date = " + published_date + ", kicker = " + kicker + "]";
     }
 }

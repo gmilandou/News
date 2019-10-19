@@ -47,8 +47,7 @@
                 android:background="@color/colorPrimary"
                 android:elevation="10dp"
                 android:text="@string/search"
-                android:textColor="#fff"
-                tools:targetApi="lollipop" />
+                android:textColor="#fff" />
 
 
             <LinearLayout
@@ -56,26 +55,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/date_layout"
-                android:paddingTop="5dp"><![CDATA[
+                android:paddingTop="5dp">
 
-                ]]><CheckBox
+                <CheckBox
                     android:id="@+id/art_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="date"
-                    android:text="@string/art"
-                    tools:ignore="TextViewEdits" /><![CDATA[
+                    android:text="Art"
+                    tools:ignore="TextViewEdits" />
 
-                ]]><CheckBox
+                <CheckBox
                     android:id="@+id/politic_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="date"
-                    android:text="@string/politics"
-                tools:ignore="TextViewEdits" />
+                    android:text="@string/politics" />
             </LinearLayout>
 
             <LinearLayout
@@ -91,17 +89,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="date"
-                    android:text="Business" /><![CDATA[
+                    android:text="Business" />
 
-                ]]><CheckBox
+                <CheckBox
                     android:id="@+id/sport_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="date"
-                    android:text="@string/sports"
-                    tools:ignore="HardcodedText,TextViewEdits" />
+                    android:text="Sports" />
             </LinearLayout>
 
             <LinearLayout
@@ -117,8 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="date"
-                    android:text="Entrepreneurs"
-                    tools:ignore="TextViewEdits" />
+                    android:text="Entrepreneurs" />
 
                 <CheckBox
                     android:id="@+id/travel_checkbox"
@@ -127,8 +123,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="date"
-                    android:text="@string/travel"
-                    tools:ignore="TextViewEdits" />
+                    android:text="Travel" />
             </LinearLayout>
 
 
@@ -146,9 +141,9 @@
                     android:drawableRight="@android:drawable/arrow_down_float"
                     android:drawableTint="@android:color/black"
                     android:onClick="showDatePicker"
-                    android:text="@string/beginDate"
+                    android:text="2017/05/6"
 
-                    tools:targetApi="m" />
+                    />
 
                 <TextView
                     android:id="@+id/end_date"
@@ -160,10 +155,9 @@
                     android:drawableTint="@android:color/black"
                     android:onClick="showDatePicker"
                     android:padding="20dp"
-                    android:text="@string/endDate"
-                    tools:targetApi="m" /><![CDATA[
+                    android:text="@string/endDate" />
 
-            ]]></LinearLayout>
+            </LinearLayout>
             <![CDATA[
 
 

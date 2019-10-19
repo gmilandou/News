@@ -4,7 +4,7 @@ package com.news.app.news.model.mostpopular;
  * Created by USER on 4/29/2019.
  */
 
-public class Multimedia {
+class Multimedia {
 
     private String copyright;
 

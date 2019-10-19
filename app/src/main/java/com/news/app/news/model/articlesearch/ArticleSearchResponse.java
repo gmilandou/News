@@ -1,7 +1,7 @@
 package com.news.app.news.model.articlesearch;
 
-/**
- * Created by USER on 4/29/2019.
+/*
+  Created by USER on 4/29/2019.
  */
 
 public class ArticleSearchResponse {
@@ -10,10 +10,6 @@ public class ArticleSearchResponse {
     private String copyright;
     private Response response;
 
-
-    public String getCopyright() {
-        return copyright;
-    }
 
     public void setCopyright(String copyright) {
         this.copyright = copyright;
