@@ -39,8 +39,6 @@ public class ExampleUnitTest {
     }
 
 
-
-
     @Test
     public void positiveDateFormatterB() throws ParseException {
         String myActualDate = processor.dateFormatterB("2019-11-13 00:08:57.231");
@@ -54,8 +52,6 @@ public class ExampleUnitTest {
     }
 
 
-
-
     @Test
     public void positiveDateFormatterC() throws ParseException {
         String myActualDate = processor.dateFormatterC("2019/11/13");
@@ -67,7 +63,6 @@ public class ExampleUnitTest {
         String myActualDate = processor.dateFormatterC("2019/11/13");
         assertNotEquals("2019/11/13", myActualDate);
     }
-
 
 
 }

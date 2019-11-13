@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -45,7 +46,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         /// Check for bolean before calling this method below.
-        scheduleNotification();
+        SharedPreferences preferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        String notificationChecked = preferences.getString("notificationChecked", null);
+        if (notificationChecked != null && notificationChecked.equalsIgnoreCase("true")) {
+            scheduleNotification();
+        }
+
     }
 
 

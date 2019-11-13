@@ -172,6 +172,7 @@ public class SearchActivity extends AppCompatActivity {
                     String searchQuery = search_text.getText().toString();
                     edit.putString("searchQuery", searchQuery);
                     edit.putString("section", mySection);
+                    edit.putString("notificationChecked", "true");
                     edit.apply();
                 } else {
 
@@ -185,6 +186,7 @@ public class SearchActivity extends AppCompatActivity {
                     String mySection = "";
                     editor.putString("searchQuery", searchQuery);
                     editor.putString("section", mySection);
+                    editor.putString("notificationChecked", "false");
                     editor.apply();
                 }
             }
