@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        /// Check for bolean before calling this method below.
         scheduleNotification();
     }
 
@@ -84,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
         calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
-        //calendar.set(Calendar.MINUTE, 06);
-        //calendar.set(Calendar.HOUR_OF_DAY, 12);
         calendar.set(Calendar.SECOND, 59);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {

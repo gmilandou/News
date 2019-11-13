@@ -4,6 +4,7 @@ package com.news.app.news;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import com.news.app.news.utility.Processor;
 
@@ -34,21 +35,25 @@ public class ExampleUnitTest {
     @Test
     public void negativeDateFormatterA() throws ParseException {
         String myActualDate = processor.dateFormatterA("2019-11-13T21:16:14+0000");
-        assertEquals("13/11/2019", myActualDate);
+        assertNotEquals("13/11/2019", myActualDate);
     }
+
+
 
 
     @Test
     public void positiveDateFormatterB() throws ParseException {
         String myActualDate = processor.dateFormatterB("2019-11-13 00:08:57.231");
-        assertEquals("13/11/19", myActualDate);//yyyy-MM-dd HH:mm:ss
+        assertEquals("13/11/19", myActualDate);
     }
 
     @Test
     public void negativeDateFormatterB() throws ParseException {
         String myActualDate = processor.dateFormatterB("2019-11-13 00:08:57.231");
-        assertEquals("13/11/2019", myActualDate);
+        assertNotEquals("13/11/2019", myActualDate);
     }
+
+
 
 
     @Test
@@ -60,8 +65,10 @@ public class ExampleUnitTest {
     @Test
     public void negativeDateFormatterC() throws ParseException {
         String myActualDate = processor.dateFormatterC("2019/11/13");
-        assertEquals("2019/11/13", myActualDate);
+        assertNotEquals("2019/11/13", myActualDate);
     }
+
+
 
 }
 

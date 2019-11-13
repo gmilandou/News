@@ -70,7 +70,6 @@ public class SearchResultActivity extends AppCompatActivity {
         }
 
 
-        //String apiKey = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
         String apiKey = BuildConfig.GoogleSecAPIKEY;
 
 
