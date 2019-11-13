@@ -1,5 +1,6 @@
 package com.news.app.news.utility;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import java.text.ParseException;
@@ -13,6 +14,7 @@ import java.util.Date;
 
 public class Processor {
 
+    @SuppressLint("SimpleDateFormat")
     public String dateFormatterA(String dateTime) throws ParseException {
 
         String formattedDate;
@@ -20,12 +22,13 @@ public class Processor {
         SimpleDateFormat formatDate;
         formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Date date = formatDate.parse(dateTime);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
         formattedDate = formatter.format(date);
 
         return formattedDate;
     }
 
+    @SuppressLint("SimpleDateFormat")
     public String dateFormatterB(String dateInput) throws ParseException {
 
         String formattedDate;
@@ -39,6 +42,7 @@ public class Processor {
         return formattedDate;
     }
 
+    @SuppressLint("SimpleDateFormat")
     public static String dateFormatterC(String dateInput) throws ParseException {
 
 
@@ -47,7 +51,7 @@ public class Processor {
 
         Date date = formatDate.parse(dateInput);
 
-        Log.d("test", "MyDate: " + dateInput);
+//        Log.d("test", "MyDate: " + dateInput);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

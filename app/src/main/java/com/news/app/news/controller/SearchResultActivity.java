@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.news.app.news.BuildConfig;
 import com.news.app.news.R;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.model.articlesearch.Doc;
@@ -46,10 +47,6 @@ public class SearchResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        //  viewPager = findViewById(R.id.viewpagerSearch);
-        // ViewPagerAdapterSearch adapter = new ViewPagerAdapterSearch(getSupportFragmentManager(), intent);
-        //viewPager.setAdapter(adapter);
-
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -73,7 +70,8 @@ public class SearchResultActivity extends AppCompatActivity {
         }
 
 
-        String apiKey = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
+        //String apiKey = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
+        String apiKey = BuildConfig.GoogleSecAPIKEY;
 
 
         ArrayList<String> section = intent.getStringArrayListExtra("section");
@@ -82,7 +80,6 @@ public class SearchResultActivity extends AppCompatActivity {
         String begin_date = null;
         try {
             begin_date = Processor.dateFormatterC(intent.getStringExtra("begin_date"));
-            // Log.d(TAG, "begin_date: " + begin_date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -97,7 +94,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
         ApiUtil.getServiceClass().getSearch(searchText, section, begin_date, endDate, apiKey).enqueue(new Callback<ArticleSearchResponse>() {
             @Override
-            public void onResponse(@NonNull Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
+            public void onResponse(@NonNull Call<ArticleSearchResponse> call, @NonNull Response<ArticleSearchResponse> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     ArrayList<Doc> postList = (ArrayList<Doc>) response.body().getResponse().getDocs();
@@ -107,7 +104,7 @@ public class SearchResultActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ArticleSearchResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<ArticleSearchResponse> call, Throwable t) {
             }
         });
 

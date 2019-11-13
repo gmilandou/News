@@ -5,6 +5,7 @@ package com.news.app.news.controller;
  */
 
 
+import com.news.app.news.BuildConfig;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
 import com.news.app.news.model.topstories.NewYorkTimesResponse;
@@ -18,7 +19,8 @@ import retrofit2.http.Query;
 
 public interface RetrofitInterface {
 
-    String apiKey = "3zQ75lelXXmxuZpVMSLzaD06md8zaPhk";
+    String apiKey = BuildConfig.GoogleSecAPIKEY;
+
 
     @GET("svc/topstories/v2/science.json?api-key=" + apiKey)
     Call<NewYorkTimesResponse> getTopStories();
@@ -39,12 +41,4 @@ public interface RetrofitInterface {
             @Query("api-key") String apiKey
     );
 
-
-   /* @GET("svc/search/v2/articlesearch.json")
-    Call<ArticleSearchResponse> getSavedSearch(
-            @Query("q") String searchText,
-            @Query("fq") ArrayList<String> mySectionList
-
-    );
-*/
 }

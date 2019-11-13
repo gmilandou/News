@@ -45,7 +45,7 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull final NewsViewHolder  holder, int position) {
+    public void onBindViewHolder(@NonNull final NewsViewHolder holder, int position) {
 
         String formattedDate = null;
         Processor processor = new Processor();
@@ -53,6 +53,7 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
 
         String imageUrl = null;
         if (apiObject.get(position).getMultimedia() != null && apiObject.get(position).getMultimedia().size() > 0) {
+
             imageUrl = "https://static01.nyt.com/" + apiObject.get(position).getMultimedia().get(0).getUrl();
         }
 
@@ -69,9 +70,9 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        holder.updated_date.setText(formattedDate);
+        holder.updatedDate.setText(formattedDate);
         holder.section.setText(section + " >");
-        holder.mcontent.setOnClickListener(new View.OnClickListener() {
+        holder.mContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

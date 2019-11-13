@@ -52,14 +52,14 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
 
         final Results results = apiObject.get(position);
 
+        //Fetching image resource
         String imageUrl = null;
         if (apiObject.get(position).getMultimedia().size() > 0) {
             imageUrl = apiObject.get(position).getMultimedia().get(0).getUrl();
         }
 
-
+        //Fetching Date and section
         String updatedDate = results.getUpdated_date();
-        //String siteUrl = results.getUrl().toString();
         String section = results.getSection();
 
         try {
@@ -69,12 +69,12 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
         }
 
         holder.description.setText(results.getTitle());
-        holder.updated_date.setText(formattedDate);
+        holder.updatedDate.setText(formattedDate);
         holder.section.setText(section + " >");
         Picasso.get().load(imageUrl)
                 .placeholder(R.drawable.index).into(holder.image);
 
-        holder.mcontent.setOnClickListener(new View.OnClickListener() {
+        holder.mContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

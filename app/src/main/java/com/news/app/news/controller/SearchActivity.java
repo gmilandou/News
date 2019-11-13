@@ -80,7 +80,6 @@ public class SearchActivity extends AppCompatActivity {
             String storedSearchQueryTerm = preferences.getString("searchQuery", null);
 
             if (storedSearchQueryTerm != null && !storedSearchQueryTerm.isEmpty()) {
-                //search_text.setHint(storedSearchQueryTerm);
                 search_text.setText(storedSearchQueryTerm);
             } else {
                 search_text.setHint("Search query term");
@@ -104,7 +103,6 @@ public class SearchActivity extends AppCompatActivity {
 
                 intent.putExtra("begin_date", globalBeginDate);
                 intent.putExtra("endDate", globalEndDate);
-                // ArrayList<String> sectionList = new ArrayList<>();
 
                 if (artCheckbox.isChecked()) {
                     sectionList.add("Arts");
@@ -123,10 +121,8 @@ public class SearchActivity extends AppCompatActivity {
                 }
                 if (travelCheckbox.isChecked()) {
                     sectionList.add("Travels");
-                    Toast.makeText(SearchActivity.this, "Travel selected", Toast.LENGTH_SHORT).show();
                 }
                 intent.putStringArrayListExtra("section", sectionList);
-                // Log.d("test", "testing: " + sectionList);
                 startActivity(intent);
             }
         });
@@ -178,8 +174,10 @@ public class SearchActivity extends AppCompatActivity {
                     edit.putString("section", mySection);
                     edit.apply();
                 } else {
+
                     // The toggle is disabled
                     Toast.makeText(SearchActivity.this, "Search query term has been disabled", Toast.LENGTH_LONG).show();
+
                     //Insertion of Mood using shared preferences
                     SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);//getPreferences(MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();

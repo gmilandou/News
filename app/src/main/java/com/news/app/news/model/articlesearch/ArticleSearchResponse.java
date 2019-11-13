@@ -10,27 +10,17 @@ public class ArticleSearchResponse {
     private String copyright;
     private Response response;
 
-
-    public void setCopyright(String copyright) {
+    public ArticleSearchResponse(String status, String copyright, Response response) {
+        this.status = status;
         this.copyright = copyright;
+        this.response = response;
     }
+
 
     public Response getResponse() {
         return response;
     }
 
-    public void setResponse(Response reponse) {
-        this.response = reponse;
-    }
-
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     @Override
     public String toString() {

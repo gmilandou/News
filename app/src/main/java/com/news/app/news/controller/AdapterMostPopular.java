@@ -30,9 +30,6 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
 
 
     private final List<ResultSearch> apiObject;
-    //private Date updated_date;
-    //private Multimedia media;
-
 
     public AdapterMostPopular(Context context, MostPopularNYTResponse apiObjects) {
         this.context = context;
@@ -51,30 +48,30 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-        String FormattedDate = null;
+        String formattedDate = null;
         Processor processor = new Processor();
         final ResultSearch results = apiObject.get(position);
-        String ImageUrl = null;
+        String imageUrl = null;
         if (apiObject.get(position).getMedia().get(0).getMediaMetadata().size() > 0) {
-            ImageUrl = apiObject.get(position).getMedia().get(0).getMediaMetadata().get(0).getUrl();
+            imageUrl = apiObject.get(position).getMedia().get(0).getMediaMetadata().get(0).getUrl();
         }
 
-        String UpdatedDate = results.getUpdated();
+        String updatedDate = results.getUpdated();
         String section = results.getSection();
 
         try {
-            FormattedDate = processor.dateFormatterB(UpdatedDate);
+            formattedDate = processor.dateFormatterB(updatedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         holder.description.setText(results.getTitle());
-        holder.updated_date.setText(FormattedDate);
+        holder.updatedDate.setText(formattedDate);
         holder.section.setText(section + " >");
-        Picasso.get().load(ImageUrl)
+        Picasso.get().load(imageUrl)
                 .placeholder(R.drawable.index).into(holder.image);
 
-        holder.mcontent.setOnClickListener(new View.OnClickListener() {
+        holder.mContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ActivityWebview.class);
