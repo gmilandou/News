@@ -7,84 +7,30 @@ package com.news.app.news.model.topstories;
 public class Multimedia {
 
     private String copyright;
-
     private String subtype;
-
     private String format;
-
     private String width;
-
     private String caption;
-
     private String type;
-
     private String url;
-
     private String height;
 
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public void setCopyright(String copyright) {
+    public Multimedia(String copyright, String subtype, String format, String width, String caption, String type, String url, String height) {
         this.copyright = copyright;
-    }
-
-    public String getSubtype() {
-        return subtype;
-    }
-
-    public void setSubtype(String subtype) {
         this.subtype = subtype;
-    }
-
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
         this.format = format;
-    }
-
-    public String getWidth() {
-        return width;
-    }
-
-    public void setWidth(String width) {
         this.width = width;
-    }
-
-    public String getCaption() {
-        return caption;
-    }
-
-    public void setCaption(String caption) {
         this.caption = caption;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
         this.type = type;
+        this.url = url;
+        this.height = height;
     }
+
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
 
     @Override
     public String toString() {

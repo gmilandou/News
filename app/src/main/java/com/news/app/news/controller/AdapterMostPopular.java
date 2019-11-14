@@ -65,9 +65,16 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
             e.printStackTrace();
         }
 
+        //Fetching article description
         holder.description.setText(results.getTitle());
+
+        //Fetching article date
         holder.updatedDate.setText(formattedDate);
+
+        //Fetching article section
         holder.section.setText(section + " >");
+
+        //Fetching image resource
         Picasso.get().load(imageUrl)
                 .placeholder(R.drawable.index).into(holder.image);
 

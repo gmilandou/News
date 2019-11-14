@@ -1,6 +1,7 @@
 package com.news.app.news.view;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,16 +26,8 @@ import retrofit2.Response;
 public class ArticleFragment extends Fragment {
 
     private final String TAG = "MYLOG";
-    int position;
+    //int position;
     private RecyclerView recyclerView;
-
-    public static Fragment getInstance(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("pos", position);
-        ArticleFragment tabFragment = new ArticleFragment();
-        tabFragment.setArguments(bundle);
-        return tabFragment;
-    }
 
 
     @Override
@@ -49,16 +42,19 @@ public class ArticleFragment extends Fragment {
 
         ApiUtil.getServiceClass().getArticleSearch().enqueue(new Callback<ArticleSearchResponse>() {
             @Override
-            public void onResponse(Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
+            public void onResponse(@NonNull Call<ArticleSearchResponse> call, Response<ArticleSearchResponse> response) {
                 if (response.isSuccessful()) {
-                    ArrayList<Doc> postList = (ArrayList<Doc>) Objects.requireNonNull(response.body()).getResponse().getDocs();
+                    ArrayList<Doc> postList = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                        postList = (ArrayList<Doc>) Objects.requireNonNull(response.body()).getResponse().getDocs();
+                    }
                     AdapterArticleSearch adapter = new AdapterArticleSearch(getContext(), postList);
                     recyclerView.setAdapter(adapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<ArticleSearchResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<ArticleSearchResponse> call, Throwable t) {
                 Log.d(TAG, "error loading from API");
             }
         });

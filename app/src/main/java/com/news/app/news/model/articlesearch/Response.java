@@ -14,20 +14,12 @@ public class Response {
     @Expose
     private Meta meta;
 
+    public Response(Meta meta) {
+        this.meta = meta;
+    }
+
     public List<Doc> getDocs() {
         return docs;
-    }
-
-    public void setDocs(List<Doc> docs) {
-        this.docs = docs;
-    }
-
-    public Meta getMeta() {
-        return meta;
-    }
-
-    public void setMeta(Meta meta) {
-        this.meta = meta;
     }
 
     @Override

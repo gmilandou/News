@@ -1,7 +1,6 @@
 package com.news.app.news.utility;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -1,6 +1,9 @@
 package com.news.app.news.view;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,14 +29,6 @@ public class TopFragment extends Fragment {
     //int position;
     private RecyclerView recyclerView;
 
-    public static Fragment getInstance(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("pos", position);
-        TopFragment tabFragment = new TopFragment();
-        tabFragment.setArguments(bundle);
-        return tabFragment;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -47,8 +42,9 @@ public class TopFragment extends Fragment {
 
 
         ApiUtil.getServiceClass().getTopStories().enqueue(new Callback<NewYorkTimesResponse>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
-            public void onResponse(Call<NewYorkTimesResponse> call, Response<NewYorkTimesResponse> response) {
+            public void onResponse(@NonNull Call<NewYorkTimesResponse> call, Response<NewYorkTimesResponse> response) {
                 if (response.isSuccessful()) {
                     NewYorkTimesResponse postList = response.body();
                     Adapter adapter = new Adapter(getContext(), Objects.requireNonNull(postList));
@@ -57,7 +53,7 @@ public class TopFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<NewYorkTimesResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<NewYorkTimesResponse> call, Throwable t) {
                 Log.d(TAG, "error loading from API");
             }
         });

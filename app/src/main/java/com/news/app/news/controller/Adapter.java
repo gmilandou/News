@@ -74,6 +74,7 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
         Picasso.get().load(imageUrl)
                 .placeholder(R.drawable.index).into(holder.image);
 
+        //Setting up the Webview lick listener
         holder.mContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

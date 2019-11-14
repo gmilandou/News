@@ -51,6 +51,7 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
         Processor processor = new Processor();
         Doc doc = apiObject.get(position);
 
+        //Fetching image resource
         String imageUrl = null;
         if (apiObject.get(position).getMultimedia() != null && apiObject.get(position).getMultimedia().size() > 0) {
 
@@ -58,8 +59,14 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
         }
 
         String brief = doc.getSnippet();
+
+        //Fetching article description
         holder.description.setText(brief);
+
+        //Fetching article date
         String updatedDate = doc.getPubDate();
+
+        //Fetching Section name
         String section = doc.getSectionName();
 
         Picasso.get().load(imageUrl)

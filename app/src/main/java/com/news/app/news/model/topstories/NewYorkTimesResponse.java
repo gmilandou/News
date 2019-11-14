@@ -20,21 +20,14 @@ public class NewYorkTimesResponse {
 
     private String status;
 
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public void setCopyright(String copyright) {
+    public NewYorkTimesResponse(String copyright, String last_updated, List<Results> results, String num_results, String status) {
         this.copyright = copyright;
-    }
-
-    public String getLast_updated() {
-        return last_updated;
-    }
-
-    public void setLast_updated(String last_updated) {
         this.last_updated = last_updated;
+        this.results = results;
+        this.num_results = num_results;
+        this.status = status;
     }
+
 
     public String getSection() {
         return section;
@@ -48,25 +41,6 @@ public class NewYorkTimesResponse {
         return results;
     }
 
-    public void setResults(List<Results> results) {
-        this.results = results;
-    }
-
-    public String getNum_results() {
-        return num_results;
-    }
-
-    public void setNum_results(String num_results) {
-        this.num_results = num_results;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     @Override
     public String toString() {

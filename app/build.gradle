@@ -10,22 +10,15 @@ android {
 
     compileSdkVersion 27
     defaultConfig {
-        // applicationId "com.inducesmile.retrofit2"
-        applicationId "com.news.app.news"//inducesmile.retrofit2
+        applicationId "com.news.app.news"
         minSdkVersion 16
         //noinspection OldTargetApi
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-
-
-        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -57,7 +50,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.0'
     testImplementation 'junit:junit:4.12'
     //noinspection GradleDependency
-    testImplementation  'com.android.support.test:runner:1.0.1'
+    testImplementation 'com.android.support.test:runner:1.0.1'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -77,10 +70,9 @@ dependencies {
     //noinspection GradleDependency
     implementation 'com.android.support:support-annotations:27.1.1'
 
-
     implementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
 
-    androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0'
 
 
 }

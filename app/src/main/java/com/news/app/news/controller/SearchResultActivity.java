@@ -85,7 +85,6 @@ public class SearchResultActivity extends AppCompatActivity {
         String endDate = null;
         try {
             endDate = Processor.dateFormatterC(intent.getStringExtra("endDate"));
-            //Log.d(TAG, "endDate: " + endDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }

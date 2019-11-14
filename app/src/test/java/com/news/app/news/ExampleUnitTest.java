@@ -54,13 +54,13 @@ public class ExampleUnitTest {
 
     @Test
     public void positiveDateFormatterC() throws ParseException {
-        String myActualDate = processor.dateFormatterC("2019/11/13");
+        String myActualDate = Processor.dateFormatterC("2019/11/13");
         assertEquals("20191113", myActualDate);
     }
 
     @Test
     public void negativeDateFormatterC() throws ParseException {
-        String myActualDate = processor.dateFormatterC("2019/11/13");
+        String myActualDate = Processor.dateFormatterC("2019/11/13");
         assertNotEquals("2019/11/13", myActualDate);
     }
 

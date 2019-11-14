@@ -26,21 +26,14 @@ public class Doc implements Parcelable {
     @SerializedName("abstract")
     @Expose
     private String _abstract;
-    //@SerializedName("blog")
-    //@Expose
-    //private Blog blog;
+
     @SerializedName("source")
     @Expose
     private String source;
     @SerializedName("multimedia")
     @Expose
     private List<Multimedium> multimedia = null;
-    //@SerializedName("headline")
-    //@Expose
-   // private Headline headline;
-    //@SerializedName("keywords")
-    //@Expose
-    //private List<Keyword> keywords = null;
+
     @SerializedName("pub_date")
     @Expose
     private String pubDate;
@@ -53,9 +46,6 @@ public class Doc implements Parcelable {
     @SerializedName("section_name")
     @Expose
     private String sectionName;
-    //@SerializedName("byline")
-    //@Expose
-    //private Byline byline;
     @SerializedName("type_of_material")
     @Expose
     private String typeOfMaterial;
@@ -111,33 +101,10 @@ public class Doc implements Parcelable {
         return snippet;
     }
 
-   /* public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
-
-
-    */
     public List<Multimedium> getMultimedia() {
         return multimedia;
     }
 
-   /* public void setMultimedia(List<Multimedium> multimedia) {
-        this.multimedia = multimedia;
-    }
-
-    */
-
-   /* public  void setHeadline(Headline headline) {
-        this.headline = headline;
-    }
-
-    */
-
-   /* public void setKeywords(List<Keyword> keywords) {
-        this.keywords = keywords;
-    }
-
-    */
 
     public String getPubDate() {
         return pubDate;
@@ -147,11 +114,6 @@ public class Doc implements Parcelable {
         return sectionName;
     }
 
-    /*public Byline getByline() {
-        return byline;
-    }
-
-     */
 
     public String getId() {
         return id;

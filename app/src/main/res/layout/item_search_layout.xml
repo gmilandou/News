@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="95dp"
     android:clickable="true"
+    android:focusable="true"
     android:orientation="horizontal"
-    tools:context="com.news.app.news.controller.SearchActivity"
-    android:focusable="true">
+    tools:context="com.news.app.news.controller.SearchActivity">
 
 
     <ImageView
@@ -15,12 +15,12 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_gravity="center"
+        android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:adjustViewBounds="true"
+        android:contentDescription="TODO"
         android:scaleType="centerCrop"
         android:src="@drawable/index"
-        android:layout_marginStart="12dp"
-        android:contentDescription="TODO"
         tools:ignore="ContentDescription" />
 
     <LinearLayout
@@ -41,13 +41,13 @@
                 android:id="@+id/post_section"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
                 android:layout_marginLeft="7dp"
                 android:layout_weight="1"
                 android:text="@string/section"
                 android:textColor="#000"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_marginStart="7dp" />
+                android:textStyle="bold" />
 
 
             <TextView
@@ -65,12 +65,15 @@
             android:id="@+id/post_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
             android:layout_marginLeft="7dp"
+            android:ellipsize="end"
+            android:maxLength="1"
+            android:maxLines="1"
             android:text="@string/desciption"
             android:textColor="#373737"
             android:textSize="16sp"
-            android:textStyle="normal"
-            android:layout_marginStart="7dp" />
+            android:textStyle="normal" />
 
         <View
             android:layout_width="match_parent"

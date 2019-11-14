@@ -16,36 +16,15 @@ public class MostPopularNYTResponse {
 
     private List<ResultSearch> results = null;
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
+    public MostPopularNYTResponse(String status, String copyright, Integer num_results) {
         this.status = status;
-    }
-
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public void setCopyright(String copyright) {
         this.copyright = copyright;
-    }
-
-    public Integer getnum_results() {
-        return num_results;
-    }
-
-    public void setnum_results(Integer num_results) {
         this.num_results = num_results;
+
     }
 
     public List<ResultSearch> getResultSearch() {
         return results;
-    }
-
-    public void setResultSearch(List<ResultSearch> results) {
-        this.results = results;
     }
 
     @Override

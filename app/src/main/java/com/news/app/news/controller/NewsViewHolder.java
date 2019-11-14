@@ -11,10 +11,10 @@ import com.news.app.news.R;
 
 public class NewsViewHolder extends RecyclerView.ViewHolder {
 
-     final TextView description;
-     final TextView updatedDate;
-     final ImageView image;
-     final LinearLayout mContent;
+    final TextView description;
+    final TextView updatedDate;
+    final ImageView image;
+    final LinearLayout mContent;
     public final TextView section;
 
 

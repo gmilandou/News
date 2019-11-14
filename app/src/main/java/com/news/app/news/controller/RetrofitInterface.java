@@ -21,7 +21,6 @@ public interface RetrofitInterface {
 
     String apiKey = BuildConfig.GoogleSecAPIKEY;
 
-
     @GET("svc/topstories/v2/science.json?api-key=" + apiKey)
     Call<NewYorkTimesResponse> getTopStories();
 
