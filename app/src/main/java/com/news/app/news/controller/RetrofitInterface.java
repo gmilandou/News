@@ -4,7 +4,6 @@ package com.news.app.news.controller;
  Created by USER on 4/22/2019.
  */
 
-
 import com.news.app.news.BuildConfig;
 import com.news.app.news.model.articlesearch.ArticleSearchResponse;
 import com.news.app.news.model.mostpopular.MostPopularNYTResponse;
