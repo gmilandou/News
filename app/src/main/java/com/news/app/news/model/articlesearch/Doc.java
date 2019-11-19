@@ -32,7 +32,7 @@ public class Doc implements Parcelable {
     private String source;
     @SerializedName("multimedia")
     @Expose
-    private List<Multimedium> multimedia = null;
+    private List<Multimedium> multimedia;// = null;
 
     @SerializedName("pub_date")
     @Expose

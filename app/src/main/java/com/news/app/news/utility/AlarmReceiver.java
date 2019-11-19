@@ -112,7 +112,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         builder.setContentTitle("My News App");
         builder.setSmallIcon(R.drawable.ic_action_name);
-        builder.setContentText("Hello Buddy,  There are some news that much your daily store search criteria, check them out !");
+        builder.setContentText("Hello Buddy,  There are some news that match your daily stored search criteria, check them out !");
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
         builder.setAutoCancel(true);
         builder.setChannelId(NOTIFICATION_CHANNEL_ID);
