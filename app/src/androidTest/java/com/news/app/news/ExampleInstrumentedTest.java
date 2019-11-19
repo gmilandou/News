@@ -36,15 +36,6 @@ public class ExampleInstrumentedTest {
     }
 
 
-  @Test
-    public void scrollingFunctionality() {
-      onView(withId(R.id.recycler_id))            // withId(R.id.my_view) is a ViewMatcher
-              .perform(click())               // click() is a ViewAction
-              .check(matches(isDisplayed()));
-  }
-
-
-
     @Test
     public void searchFunctionality() {
         /* From the main menu, click on the Search Icon */
