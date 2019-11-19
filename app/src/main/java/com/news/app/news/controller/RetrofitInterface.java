@@ -30,7 +30,6 @@ public interface RetrofitInterface {
     @GET("svc/search/v2/articlesearch.json?q=election&api-key=" + apiKey)
     Call<ArticleSearchResponse> getArticleSearch();
 
-
     @GET("svc/search/v2/articlesearch.json")
     Call<ArticleSearchResponse> getSearch(
             @Query("q") String searchText,
