@@ -72,7 +72,7 @@ public class Adapter extends RecyclerView.Adapter<NewsViewHolder> {
         holder.updatedDate.setText(formattedDate);
         holder.section.setText(section + " >");
         Picasso.get().load(imageUrl)
-                .placeholder(R.drawable.index).into(holder.image);
+                .placeholder(R.drawable.logo).into(holder.image);
 
         //Setting up the Webview lick listener
         holder.mContent.setOnClickListener(new View.OnClickListener() {

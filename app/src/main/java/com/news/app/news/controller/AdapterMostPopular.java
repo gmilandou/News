@@ -76,7 +76,7 @@ public class AdapterMostPopular extends RecyclerView.Adapter<NewsViewHolder> {
 
         //Fetching image resource
         Picasso.get().load(imageUrl)
-                .placeholder(R.drawable.index).into(holder.image);
+                .placeholder(R.drawable.logo).into(holder.image);
 
         holder.mContent.setOnClickListener(new View.OnClickListener() {
             @Override

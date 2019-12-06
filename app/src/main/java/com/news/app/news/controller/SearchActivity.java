@@ -3,6 +3,8 @@ package com.news.app.news.controller;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -69,10 +71,14 @@ public class SearchActivity extends AppCompatActivity {
                 findViewById(R.id.date_layout).setVisibility(View.GONE);
                 searchButton.setVisibility(View.GONE);
                 toolbar.setTitle("Notification");
-
+                toolbar.setTitleTextColor(Color.WHITE);
+                toolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
             } else {
                 switchButton.setVisibility(View.GONE);
                 toolbar.setTitle("Search Articles");
+                //toolbar.setTitleTextColor("#ffffffff");
+                toolbar.setTitleTextColor(Color.WHITE);
+                toolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
             }
 
 

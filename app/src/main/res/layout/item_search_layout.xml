@@ -20,7 +20,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="TODO"
         android:scaleType="centerCrop"
-        android:src="@drawable/index"
+        android:src="@drawable/logo"
         tools:ignore="ContentDescription" />
 
     <LinearLayout

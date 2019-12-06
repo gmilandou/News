@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -13,6 +15,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -45,12 +48,24 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+
+     /*   if (userConnected()){
+            Log.d("TUE", "You are connected");
+            Toast.makeText(this, "You are connected to the Internet", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "You do not have Internet connection", Toast.LENGTH_LONG).show();
+            Log.d("FALSE", "You are not connected");
+
+        }
+*/
+
         /// Check for bolean before calling this method below.
         SharedPreferences preferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String notificationChecked = preferences.getString("notificationChecked", null);
         if (notificationChecked != null && notificationChecked.equalsIgnoreCase("true")) {
             scheduleNotification();
         }
+
 
     }
 
@@ -71,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             i.putExtra("Notification_type", "Notification");
             startActivity(i);
         } else if (id == R.id.action_help) {
-            Toast.makeText(this, "This is Help", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Welcome to our Help section", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.action_about) {
             Toast.makeText(this, "This is About", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.search) {
@@ -96,6 +111,14 @@ public class MainActivity extends AppCompatActivity {
         if (alarmManager != null) {
             alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
+    }
+
+    private boolean userConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+
     }
 
 }

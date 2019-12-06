@@ -70,7 +70,7 @@ public class AdapterArticleSearch extends RecyclerView.Adapter<NewsViewHolder> {
         String section = doc.getSectionName();
 
         Picasso.get().load(imageUrl)
-                .placeholder(R.drawable.index).into(holder.image);
+                .placeholder(R.drawable.logo).into(holder.image);
 
         try {
             formattedDate = processor.dateFormatterA(updatedDate);
