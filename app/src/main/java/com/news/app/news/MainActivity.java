@@ -6,8 +6,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -15,7 +13,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -86,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
             i.putExtra("Notification_type", "Notification");
             startActivity(i);
         } else if (id == R.id.action_help) {
-            Toast.makeText(this, "Welcome to our Help section", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.action_about) {
+            Toast.makeText(this, "Contact us at : gmilandou2012@gmail.com", Toast.LENGTH_LONG).show();
+        }/* else if (id == R.id.action_about) {
             Toast.makeText(this, "This is About", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.search) {
+        } */else if (id == R.id.search) {
             Intent i = new Intent(MainActivity.this, SearchActivity.class);
             i.putExtra("Notification_type", "SearchActivity");
             startActivity(i);
@@ -104,21 +101,26 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         // long futureInMillis = SystemClock.elapsedRealtime() + delay;
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
-        calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
-        calendar.set(Calendar.SECOND, 59);
+      //  calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
+       // calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
+      //  calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {
             alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
     }
 
-    private boolean userConnected(){
+   /* private boolean userConnected(){
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 
-    }
+    }*/
 
 }

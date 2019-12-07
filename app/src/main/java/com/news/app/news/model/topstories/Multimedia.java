@@ -1,5 +1,7 @@
 package com.news.app.news.model.topstories;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by USER on 4/29/2019.
  */
@@ -32,6 +34,7 @@ public class Multimedia {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return "Multimedia [copyright = " + copyright + ", subtype = " + subtype + ", format = " + format + ", width = " + width + ", caption = " + caption + ", type = " + type + ", url = " + url + ", height = " + height + "]";

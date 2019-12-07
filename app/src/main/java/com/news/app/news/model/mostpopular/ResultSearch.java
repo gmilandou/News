@@ -1,5 +1,7 @@
 package com.news.app.news.model.mostpopular;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 
@@ -94,6 +96,7 @@ public class ResultSearch {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
 

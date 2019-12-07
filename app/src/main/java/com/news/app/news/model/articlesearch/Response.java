@@ -1,5 +1,7 @@
 package com.news.app.news.model.articlesearch;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
@@ -22,6 +24,7 @@ public class Response {
         return docs;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "ArticleSearch [docs = " + docs + ", meta = " + meta + "]";

@@ -1,5 +1,7 @@
 package com.news.app.news.model.mostpopular;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 /**
@@ -27,6 +29,7 @@ public class MostPopularNYTResponse {
         return results;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "MostPopularNYTResponse [status = " + status + ", copyright = " + copyright + ", num_results = " + num_results + ", results = " + results + "]";

@@ -4,7 +4,7 @@
         android:id="@+id/search"
         android:icon="@drawable/outline_search_white_18dp"
         android:title="Search"
-        app:showAsAction="ifRoom"></item>
+        app:showAsAction="ifRoom" />
 
     <group android:checkableBehavior="none">
         <item
@@ -17,10 +17,10 @@
             android:title="Help">
         </item>
 
-        <item
+      <!--  <item
             android:id="@+id/action_about"
             android:title="About">
-        </item>
+        </item> -->
 
     </group>
 </menu>

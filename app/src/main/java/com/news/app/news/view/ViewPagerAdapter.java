@@ -19,8 +19,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         Log.d(TAG, "get my position: " + position);
         switch (position) {
 
-            case 0:
-                return new TopFragment();
             case 1:
                 return new MostFragment();
             case 2:

@@ -1,5 +1,7 @@
 package com.news.app.news.model.mostpopular;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by USER on 6/11/2019.
  */
@@ -24,6 +26,7 @@ public class MediaMetadatum {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return "MediaMetatum [url = " + url + ", format = " + format + ", height = " + height + ", width = " + width + "]";

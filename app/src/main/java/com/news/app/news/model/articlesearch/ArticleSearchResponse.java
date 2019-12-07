@@ -4,6 +4,8 @@ package com.news.app.news.model.articlesearch;
   Created by USER on 4/29/2019.
  */
 
+import android.support.annotation.NonNull;
+
 public class ArticleSearchResponse {
 
     private String status;
@@ -22,6 +24,7 @@ public class ArticleSearchResponse {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return "ArticleSearch [status = " + status + ", copyright = " + copyright + ", response = " + response + "]";
